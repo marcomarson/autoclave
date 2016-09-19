@@ -21,11 +21,9 @@ class RegEsterilizacaoController extends Controller
       */
      public function index()
      {
-      $esterilizacoes = \App\Esterilizacao::all();
       $autoclave = \App\Autoclave::all();
       $equipamento = \App\Equipamento::all();
-      return view('registrar/registrar')
-      ->with('esterilizacao', $esterilizacoes)
+      return view('registrar.registrar')
       ->with('autoclave', $autoclave)
       ->with('equipamento', $equipamento);
      }
