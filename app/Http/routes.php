@@ -25,9 +25,8 @@ Route::get('Informacao', function () {
     return 'Informações das  sessões nas autoclaves(Não implementado)';
 });
 
-Route::get('regEsterilizacao', function () {
-    return 'Registrar Esterilização do Equipamento (Não implementado)';
-});
+Route::get('regEsterilizacao', 'regEsterilizacaoController@index');
+
 Route::get('Retirada', function () {
     return 'Registrar Retirada do Equipamento (Não implementado)';
 });
@@ -40,6 +39,3 @@ Route::get('Termino', function () {
 Route::get('Relatorios', function () {
     return 'Mostrar relatórios pertinentes ao uso das autoclaves(Não implementado)';
 });
-
-
-

@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <link rel="shortcut icon" href="http://portal.uepg.br/favicon.ico"/>
     <title>Laravel</title>
 
     <!-- Fonts -->
@@ -13,7 +13,7 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-    
+
     <link href="{{ URL::asset('css/sb-admin.css') }}" rel="stylesheet">
 
 </head>
@@ -21,9 +21,8 @@
     <div id="wrapper">
         <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container">
-                <div class="navbar-header">
+                <div class="navbar-header text-center">
 
-                    <!-- Collapsed Hamburger -->
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-ex1-collapse">
                         <span class="sr-only">Toggle Navigation</span>
                         <span class="icon-bar"></span>
@@ -50,29 +49,29 @@
                     </li>
                     @endif
                 </ul>
-                
+                @include("footer")
             </div>
-            <div class="collapse navbar-collapse navbar-ex1-collapse">
-                    <ul class="nav navbar-nav side-nav">
-                        <li class="btn-info">
-                            <a href="menu"><i class="fa fa-fw fa-dashboard"></i> Registrar Esterilização</a>
+            <div class="collapse navbar-collapse navbar-ex1-collapse navbar-default">
+                    <ul class="nav navbar-nav side-nav navbar-default">
+                        <li>
+                            <a href="regEsterilizacao"><i class="fa fa-fw fa-edit"></i>Registrar Esterilização</a>
                         </li>
                         <li>
-                            <a href="charts.html"><i class="fa fa-fw fa-bar-chart-o"></i> Charts</a>
+                            <a href="informacao"><i class="fa fa-fw fa-bar-chart-o"></i>Informações</a>
                         </li>
                         <li>
-                            <a href="tables.html"><i class="fa fa-fw fa-table"></i> Tables</a>
+                            <a href="Retirada"><i class="fa fa-fw fa-table"></i>Retirada de Equipamento</a>
                         </li>
                         <li>
-                            <a href="forms.html"><i class="fa fa-fw fa-edit"></i> Forms</a>
+                            <a href="RegNovamente"><i class="fa fa-fw fa-edit"></i>Registrar Novamente</a>
                         </li>
                         <li>
-                            <a href="bootstrap-elements.html"><i class="fa fa-fw fa-desktop"></i> Bootstrap Elements</a>
+                            <a href="Termino"><i class="fa fa-fw fa-desktop"></i>Término da Autoclave</a>
                         </li>
                         <li>
-                            <a href="bootstrap-grid.html"><i class="fa fa-fw fa-wrench"></i> Bootstrap Grid</a>
+                            <a href="Relatorios"><i class="fa fa-fw fa-bar-chart-o"></i>Relatórios</a>
                         </li>
-                        
+
                     </ul>
             </div>
         </nav>
