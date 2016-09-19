@@ -25,7 +25,7 @@ Route::get('Informacao', function () {
     return 'Informações das  sessões nas autoclaves(Não implementado)';
 });
 
-Route::get('regEsterilizacao', 'regEsterilizacaoController@index');
+Route::resource('regEsterilizacao', 'RegEsterilizacaoController');
 
 Route::get('Retirada', function () {
     return 'Registrar Retirada do Equipamento (Não implementado)';

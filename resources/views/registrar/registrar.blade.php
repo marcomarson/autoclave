@@ -7,7 +7,7 @@
     <div class="panel panel-default">
       <div class="panel-heading">Registrar</div>
       <div class="panel-body">
-        <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
+        <form class="form-horizontal" role="form" method="POST" action="{{ url('/regEsterilizacao') }}">
           {{ csrf_field() }}
           <div class="form-group">
             <div class="col-md-6 col-md-offset-4">
@@ -51,10 +51,9 @@
           <div class="form-group">
               <label for="equipamento" class="col-md-4 control-label">Equipamento</label>
             <div class="col-md-6">
-              <select class="col-md-6 control-label" id="sel1">
-
+              <select class="col-md-6 control-label" id="sel1" name="equipamento_id">
                     @foreach ($equipamento->all() as $equip)
-                      <option> {{$equip->equipamento_nome }} </option>
+                    <option value="{{$equip->equipamento_id}}"> {{$equip->equipamento_nome }} </option>
                     @endforeach
               </select>
             </div>
@@ -62,9 +61,9 @@
           <div class="form-group">
               <label for="autoclave" class="col-md-4 control-label">Autoclave</label>
             <div class="col-md-6">
-              <select class="col-md-4 control-label" id="sel2">
+              <select class="col-md-4 control-label" id="sel2" name="autoclave_id">
                 @foreach ($autoclave->all() as $auto)
-                  <option> {{$auto->autoclave_id}} </option>
+                <option value="{{$auto->autoclave_id}}"> {{$auto->autoclave_id}} </option>
                 @endforeach
               </select>
             </div>
