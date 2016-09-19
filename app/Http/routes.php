@@ -21,11 +21,13 @@ Route::get('menu', function () {
     return view('menu'); //tela de entrada deverá ser a de login
 });
 
-Route::get('Informacao', function () {
-    return 'Informações das  sessões nas autoclaves(Não implementado)';
-});
+Route::get('informacao', 'InformacoesController@index');
 
+<<<<<<< HEAD
 Route::resource('regEsterilizacao', 'RegEsterilizacaoController');
+=======
+Route::get('regEsterilizacao', 'RegEsterilizacaoController@index');
+>>>>>>> 923afb7881b239fcfc3483b517cfd62cdf2402f0
 
 Route::get('Retirada', function () {
     return 'Registrar Retirada do Equipamento (Não implementado)';
