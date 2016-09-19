@@ -8,8 +8,9 @@
       <table id="mudaStatus" class="table table-responsive table-striped table-hover">
         <thead>
           <tr>
-            <th class="col-md-2">Nome</th>
-            <th class="col-md-1">Status</th>
+            <th class="col-md-2">Registro</th>
+            <th class="col-md-1">Data Inicial</th>
+            <th class="col-md-1">Autoclave utilizada</th>
           </tr>
         </thead>
         <tbody>
@@ -18,6 +19,9 @@
               <tr>
                 <td>
                   {{$value->esterilizacao_id}}
+                </td>
+                <td>
+                  {{$value->data_inicio}}
                 </td>
                 <td>
                   {{$value->autoclave_id}}
