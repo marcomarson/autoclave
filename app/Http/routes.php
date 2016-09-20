@@ -22,12 +22,10 @@ Route::get('menu', function () {
 });
 
 
+Route::resource('info', 'InformacoesController');
 Route::resource('regEsterilizacao', 'RegEsterilizacaoController');
+Route::resource('retirada', 'RegEsterilizacaoController');
 
-
-Route::get('Retirada', function () {
-    return 'Registrar Retirada do Equipamento (Não implementado)';
-});
 Route::get('regNovamente', function () {
     return 'Registrar Esterilização do Equipamento novamente (Não implementado)';
 });

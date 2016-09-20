@@ -57,7 +57,7 @@
                             <a href="regEsterilizacao"><i class="fa fa-fw fa-edit"></i>Registrar Esterilização</a>
                         </li>
                         <li>
-                            <a href="informacao"><i class="fa fa-fw fa-bar-chart-o"></i>Informações</a>
+                            <a href="info"><i class="fa fa-fw fa-bar-chart-o"></i>Informações</a>
                         </li>
                         <li>
                             <a href="Retirada"><i class="fa fa-fw fa-table"></i>Retirada de Equipamento</a>

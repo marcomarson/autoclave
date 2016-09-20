@@ -44,8 +44,7 @@ class RegEsterilizacaoController extends Controller
                  'recadastro_id' => 1
              ];
              $est->create($est2);
-             dd($est2);
-             //dd($request->all());
+
              
          } catch (Exception $ex) {
              return 'erro';
