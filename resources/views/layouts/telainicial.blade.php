@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="http://portal.uepg.br/favicon.ico"/>
-    <title>Laravel</title>
+    <title>Central de Esterilização UEPG</title>
 
     <!-- Fonts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
@@ -54,22 +54,16 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse navbar-default">
                     <ul class="nav navbar-nav side-nav navbar-default">
                         <li>
-                            <a href="regEsterilizacao"><i class="fa fa-fw fa-edit"></i>Registrar Esterilização</a>
+                            <a href="{{url('regEsterilizacao')}}"><i class="fa fa-fw fa-edit"></i>Registrar Esterilização</a>
                         </li>
                         <li>
-                            <a href="info"><i class="fa fa-fw fa-bar-chart-o"></i>Informações</a>
+                            <a href="{{url('info')}}"><i class="fa fa-fw fa-bar-chart-o"></i>Informações</a>
                         </li>
                         <li>
-                            <a href="Retirada"><i class="fa fa-fw fa-table"></i>Retirada de Equipamento</a>
+                            <a href="{{url('retirada')}}"><i class="fa fa-fw fa-table"></i>Retirada de Equipamento</a>
                         </li>
                         <li>
-                            <a href="RegNovamente"><i class="fa fa-fw fa-edit"></i>Registrar Novamente</a>
-                        </li>
-                        <li>
-                            <a href="Termino"><i class="fa fa-fw fa-desktop"></i>Término da Autoclave</a>
-                        </li>
-                        <li>
-                            <a href="Relatorios"><i class="fa fa-fw fa-bar-chart-o"></i>Relatórios</a>
+                            <a href="{{url('relatorios')}}"><i class="fa fa-fw fa-bar-chart-o"></i>Relatórios</a>
                         </li>
 
                     </ul>
