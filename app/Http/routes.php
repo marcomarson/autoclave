@@ -21,17 +21,10 @@ Route::get('menu', function () {
     return view('menu'); //tela de entrada deverá ser a de login
 });
 
-Route::get('informacao', 'InformacoesController@index');
-
-<<<<<<< HEAD
+Route::resource('info', 'InformacoesController');
 Route::resource('regEsterilizacao', 'RegEsterilizacaoController');
-=======
-Route::get('regEsterilizacao', 'RegEsterilizacaoController@index');
->>>>>>> 923afb7881b239fcfc3483b517cfd62cdf2402f0
+Route::resource('retirada', 'RegEsterilizacaoController');
 
-Route::get('Retirada', function () {
-    return 'Registrar Retirada do Equipamento (Não implementado)';
-});
 Route::get('regNovamente', function () {
     return 'Registrar Esterilização do Equipamento novamente (Não implementado)';
 });
