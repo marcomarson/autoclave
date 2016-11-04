@@ -11,7 +11,8 @@ class InformacoesController extends Controller
     //
     public function index()
     {
-     $esterilizacoes = \App\Esterilizacao::all();
+     $esterilizacoes = \App\Esterilizacao::where('data_final', '=', NULL)->join('equipamentoodontologico', 'equipamentoodontologico.equipamento_id','=', 'esterilizacao.equipamento_id')->get();
+     //dd($esterilizacoes);
      return view('informacoes.informacoes')
      ->with('esterilizacoes', $esterilizacoes);
     }

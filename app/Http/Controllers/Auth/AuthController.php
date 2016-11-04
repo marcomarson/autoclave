@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
+use App\Admin;
 use Validator;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
@@ -49,24 +50,52 @@ class AuthController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|min:6|confirmed',
+          'nome' => 'required|string',
+          'email' => 'required|email|max:60|unique:admin',
+          'password' => 'required|confirmed|min:6',
+          'password_confirmation' => 'required|same:password',
+          'telefone_numero' => 'required|numeric|digits_between:8,9|unique:telefone',
+          'telefone_ddd' => 'required|numeric|digits:2'
+
         ]);
     }
+
+    public function index()
+    {
+     $cidade = \App\Cidade::all();
+     $turno = \App\Turno::all();
+     return view('auth.register')
+     ->with('cidade', $cidade)
+     ->with('turno', $turno);
+    }
+
+
+
 
     /**
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
-     * @return User
+     * @return Admin
      */
-    protected function create(array $data)
+    protected function create(array $dados)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-        ]);
-    }
+
+            \App\Telefone::create([
+              'telefone_numero' => $dados['telefone_numero'],
+              'telefone_ddd' => $dados['telefone_ddd']
+            ]);
+            $tel_id= \App\Telefone::where('telefone_numero', $dados['telefone_numero'])->where('telefone_ddd', $dados['telefone_ddd'])->first();
+            //dd($tel_id['telefone_id']);
+              return Admin::create([
+                'nome' => $dados['nome'],
+                'email' => $dados['email'],
+                'password' => bcrypt($dados['password']),
+                'cidade_id' => $dados['cidade_id'],
+                'telefone_id' => $tel_id['telefone_id'],
+                'turno_id' => $dados['turno_id']
+              ]);
+
+
+      }
 }

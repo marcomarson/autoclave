@@ -24,14 +24,16 @@ class RegEsterilizacaoController extends Controller
      {
       $autoclave = \App\Autoclave::all();
       $equipamento = \App\Equipamento::all();
+      $sala= \App\Sala::all();
       return view('registrar.registrar')
       ->with('autoclave', $autoclave)
-      ->with('equipamento', $equipamento);
+      ->with('equipamento', $equipamento)
+      ->with('sala', $sala);
      }
-     
+
      public function store(Request $request){
          try{
-             
+
              $est = new Esterilizacao;
              $est2 = [
                  'sala_id' => 1,
@@ -45,10 +47,10 @@ class RegEsterilizacaoController extends Controller
              ];
              $est->create($est2);
 
-             
+
          } catch (Exception $ex) {
              return 'erro';
          }
-         
+
      }
 }
