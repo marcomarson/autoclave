@@ -39,7 +39,7 @@
                    @if (Auth::guest())
                         @else
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> {{ Auth::user()->name }} <b class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> {{ Auth::user()->nome }} <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li class="divider"></li>
                             <li>
@@ -60,7 +60,22 @@
                             <a href="{{url('info')}}"><i class="fa fa-fw fa-bar-chart-o"></i>Informações</a>
                         </li>
                         <li>
-                            <a href="{{url('retirada')}}"><i class="fa fa-fw fa-table"></i>Retirada de Equipamento</a>
+                            <a href="{{url('retirada')}}"><i class="fa fa-fw fa-table"></i>Retirada dos Equipamentos</a>
+                        </li>
+                        <li>
+                            <a href="{{url('cliente')}}"><i class="fa fa-fw fa-edit"></i>Cadastro de Clientes</a>
+                        </li>
+                        <li>
+                            <a href="{{url('sala/create')}}"><i class="fa fa-fw fa-edit"></i>Cadastro de Salas</a>
+                        </li>
+                        <li>
+                            <a href="{{url('disciplina/create')}}"><i class="fa fa-fw fa-edit"></i>Cadastro de Disciplinas</a>
+                        </li>
+                        <li>
+                            <a href="{{url('equipamento/create')}}"><i class="fa fa-fw fa-edit"></i>Cadastro de Equipamentos Odontológicos</a>
+                        </li>
+                        <li>
+                            <a href="{{url('conjunto/create')}}"><i class="fa fa-fw fa-edit"></i>Cadastro de Conjuntos de Equipamentos</a>
                         </li>
                         <li>
                             <a href="{{url('relatorios')}}"><i class="fa fa-fw fa-bar-chart-o"></i>Relatórios</a>

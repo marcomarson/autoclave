@@ -80,6 +80,14 @@ class AuthController extends Controller
      */
     protected function create(array $dados)
     {
+          $cidade= \App\Cidade::where('cidade_nome', $dados['cidade_nome'])->first();
+          if (is_null($cidade)){
+            \App\Cidade::create([
+              'cidade_nome' => $dados['cidade_nome'],
+              'cidade_estado' => $dados['cidade_estado']
+            ]);
+            $cidade= \App\Cidade::where('cidade_nome', $dados['cidade_nome'])->first();
+          }
 
             \App\Telefone::create([
               'telefone_numero' => $dados['telefone_numero'],
@@ -91,7 +99,7 @@ class AuthController extends Controller
                 'nome' => $dados['nome'],
                 'email' => $dados['email'],
                 'password' => bcrypt($dados['password']),
-                'cidade_id' => $dados['cidade_id'],
+                'cidade_id' => $cidade['cidade_id'],
                 'telefone_id' => $tel_id['telefone_id'],
                 'turno_id' => $dados['turno_id']
               ]);

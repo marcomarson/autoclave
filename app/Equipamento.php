@@ -10,11 +10,7 @@ class Equipamento extends Model
   protected $primaryKey = 'equipamento_id';
     //
      public $fillable = [
-        'equipamento_nome',
-        'sala_id'
+        'equipamento_nome'
    ];
    public $timestamps = false;
-   public function sala(){
-     return $this->belongsTo('\App\Sala', 'sala_id');
-   }
 }

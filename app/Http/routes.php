@@ -22,11 +22,7 @@
 // });
 
 
-Route::resource('info', 'InformacoesController');
-Route::resource('regEsterilizacao', 'RegEsterilizacaoController');
-Route::resource('retirada', 'RegRetiradaController');
-Route::resource('sala', 'SalaController');
-Route::resource('relatorios', 'RelatoriosController');
+
 
 
 Route::get('regNovamente', function () {
@@ -41,6 +37,14 @@ Route::get('Relatorios', function () {
 
 
 Route::group(['middleware' => 'web'], function () {
+    Route::resource('sala', 'SalaController');
+    Route::resource('cliente', 'ClienteController');
+    Route::resource('equipamento', 'EquipamentoController');
+
+    Route::resource('info', 'InformacoesController');
+    Route::resource('regEsterilizacao', 'RegEsterilizacaoController');
+    Route::resource('retirada', 'RegRetiradaController');
+    Route::resource('relatorios', 'RelatoriosController');
 
     Route::get('login', 'Auth\AuthController@showLoginForm');
     Route::post('login', 'Auth\AuthController@login');

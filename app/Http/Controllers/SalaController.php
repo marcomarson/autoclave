@@ -11,21 +11,21 @@ class SalaController extends Controller
 {
     public function index(){
         $sala = Sala::all();
-        return view('sala.index')->with('sala', $sala);        
+        return view('sala.index')->with('sala', $sala);
     }
-    
+
     public function create(){
          $sala = Sala::all();
-        return view('sala.create')->with('sala', $sala);         
+        return view('sala.create')->with('sala', $sala);
     }
-    
-    public function update(Request $request, $id_sala){
-        
-        
+
+    public function update(Request $request, $sala_id){
+
+
     }
-    
+
     public function show(){
-        
+
     }
 
 
@@ -33,15 +33,15 @@ class SalaController extends Controller
         try{
             $sala = new Sala;
             $sala->create($request->all());
-            
+
             return \Redirect::to('sala');
-            
+
         } catch (Exception $ex) {
             return 'erro';
         }
     }
-    
+
     public function destroy(){
-        
+
     }
 }
