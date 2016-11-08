@@ -100,7 +100,7 @@
                             </div>
                         </div>
                         <div class="form-group{{ $errors->has('turno') ? ' has-error' : '' }}">
-                            <label for="cidade_id" class="col-md-4 control-label">Turno</label>
+                            <label for="turno" class="col-md-4 control-label">Turno</label>
                           <div class="col-md-6">
                             <select class="col-md-6 control-label" id="turno_id" name="turno_id">
                                   @foreach ($turno->all() as $tur)
@@ -126,13 +126,13 @@
                           </div>
                         </div>
                         <div class="form-group{{ $errors->has('cidade') ? ' has-error' : '' }}">
-                            <label for="cidade_id" class="col-md-4 control-label">Cidade</label>
+                            <label for="cidade_nome" class="col-md-4 control-label">Cidade</label>
                           <div class="col-md-6">
-                            <input id="cidade" type="text" class="form-control" name="cidade" value="{{ old('cidade') }}">
+                            <input id="cidade_nome" type="text" class="form-control" name="cidade_nome" value="{{ old('cidade_nome') }}">
 
-                            @if ($errors->has('cidade'))
+                            @if ($errors->has('cidade_nome'))
                                 <span class="help-block">
-                                    <strong>{{ $errors->first('cidade') }}</strong>
+                                    <strong>{{ $errors->first('cidade_nome') }}</strong>
                                 </span>
                             @endif
                           </div>

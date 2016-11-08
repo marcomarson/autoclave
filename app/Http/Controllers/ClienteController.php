@@ -36,10 +36,40 @@ class ClienteController extends Controller
 
 
     public function store(Request $request){
-        try{
-            $cliente = new Cliente;
-            $cliente->create($request->all());
 
+      $this->validate($request, [
+        'nome' => 'required|string',
+        'email' => 'required|email|max:60|unique:cliente',
+        'password' => 'required|confirmed|min:6',
+        'password_confirmation' => 'required|same:password',
+        'telefone_numero' => 'required|numeric|digits_between:8,9|unique:telefone',
+        'telefone_ddd' => 'required|numeric|digits:2',
+        'cidade_nome' => 'required|string'
+   ]);
+        try{
+            $dados=$request->all();
+            $cidade= \App\Cidade::where('cidade_nome', strtolower ($dados['cidade_nome']))->first();
+            if (is_null($cidade)){
+              \App\Cidade::create([
+                'cidade_nome' => strtolower($dados['cidade_nome']),
+                'cidade_estado' => $dados['cidade_estado']
+              ]);
+              $cidade= \App\Cidade::where('cidade_nome', strtolower($dados['cidade_nome']))->first();
+            }
+
+              \App\Telefone::create([
+                'telefone_numero' => $dados['telefone_numero'],
+                'telefone_ddd' => $dados['telefone_ddd']
+              ]);
+              $tel_id= \App\Telefone::where('telefone_numero', $dados['telefone_numero'])->where('telefone_ddd', $dados['telefone_ddd'])->first();
+              //dd($tel_id['telefone_id']);
+                return Cliente::create([
+                  'nome' => $dados['nome'],
+                  'email' => $dados['email'],
+                  'password' => bcrypt($dados['password']),
+                  'cidade_id' => $cidade['cidade_id'],
+                  'telefone_id' => $tel_id['telefone_id']
+                ]);
             return \Redirect::to('cliente');
 
         } catch (Exception $ex) {

@@ -55,7 +55,8 @@ class AuthController extends Controller
           'password' => 'required|confirmed|min:6',
           'password_confirmation' => 'required|same:password',
           'telefone_numero' => 'required|numeric|digits_between:8,9|unique:telefone',
-          'telefone_ddd' => 'required|numeric|digits:2'
+          'telefone_ddd' => 'required|numeric|digits:2',
+          'cidade_nome' => 'required'
 
         ]);
     }
@@ -80,13 +81,13 @@ class AuthController extends Controller
      */
     protected function create(array $dados)
     {
-          $cidade= \App\Cidade::where('cidade_nome', $dados['cidade_nome'])->first();
+          $cidade= \App\Cidade::where('cidade_nome', strtolower ($dados['cidade_nome']))->first();
           if (is_null($cidade)){
             \App\Cidade::create([
-              'cidade_nome' => $dados['cidade_nome'],
+              'cidade_nome' => strtolower($dados['cidade_nome']),
               'cidade_estado' => $dados['cidade_estado']
             ]);
-            $cidade= \App\Cidade::where('cidade_nome', $dados['cidade_nome'])->first();
+            $cidade= \App\Cidade::where('cidade_nome', strtolower($dados['cidade_nome']))->first();
           }
 
             \App\Telefone::create([

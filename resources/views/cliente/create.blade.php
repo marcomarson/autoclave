@@ -9,7 +9,8 @@
             <div class="panel-body">
                 {{ csrf_field() }}
                 <form class="form-horizontal" role="form" method="POST" action="{{ url('/cliente') }}">
-                  <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                  <div class="form-group{{ $errors->has('nome') ? ' has-error' : '' }}">
                       <label for="nome" class="col-md-4 control-label">Nome</label>
 
                       <div class="col-md-6">
@@ -67,7 +68,7 @@
                       <label for="telefone_ddd" class="col-md-2 control-label">DDD</label>
 
                       <div class="col-md-2">
-                          <input id="telefone_ddd" type="text" class="form-control" name="telefone_ddd" value="{{ old('telefone_ddd') }}">
+                          <input id="telefone_ddd" type="text" class="form-control" name="Número de telefone" value="{{ old('telefone_ddd') }}">
 
                           @if ($errors->has('telefone_ddd'))
                               <span class="help-block">
@@ -97,14 +98,14 @@
                       </select>
                     </div>
                   </div>
-                  <div class="form-group{{ $errors->has('cidade') ? ' has-error' : '' }}">
-                      <label for="cidade_id" class="col-md-4 control-label">Cidade</label>
+                  <div class="form-group{{ $errors->has('cidade_nome') ? ' has-error' : '' }}">
+                      <label for="cidade_nome" class="col-md-4 control-label">Cidade</label>
                     <div class="col-md-4">
-                      <input id="cidade" type="text" class="form-control" name="cidade" value="{{ old('cidade') }}">
+                      <input id="cidade_nome" type="text" class="form-control" name="cidade_nome" value="{{ old('cidade_nome') }}">
 
-                      @if ($errors->has('cidade'))
+                      @if ($errors->has('cidade_nome'))
                           <span class="help-block">
-                              <strong>{{ $errors->first('cidade') }}</strong>
+                              <strong>{{ $errors->first('cidade_nome') }}</strong>
                           </span>
                       @endif
                     </div>
