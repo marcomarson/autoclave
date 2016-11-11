@@ -65,10 +65,10 @@
                       </div>
                   </div>
                   <div class="form-group{{ $errors->has('telefone_ddd') ? ' has-error' : '' }}">
-                      <label for="telefone_ddd" class="col-md-2 control-label">DDD</label>
+                      <label for="telefone_ddd" class="col-md-4 control-label">DDD</label>
 
                       <div class="col-md-2">
-                          <input id="telefone_ddd" type="text" class="form-control" name="Número de telefone" value="{{ old('telefone_ddd') }}">
+                          <input id="telefone_ddd" type="text" class="form-control" name="telefone_ddd" value="{{ old('telefone_ddd') }}">
 
                           @if ($errors->has('telefone_ddd'))
                               <span class="help-block">
@@ -76,7 +76,9 @@
                               </span>
                           @endif
                       </div>
-                      <label for="telefone_numero" class="col-md-2 control-label">Número</label>
+                    </div>
+                    <div class="form-group{{ $errors->has('telefone_numero') ? ' has-error' : '' }}">
+                      <label for="telefone_numero" class="col-md-4 control-label">Número</label>
 
                       <div class="col-md-3">
                           <input id="telefone_numero" type="text"  class="form-control" name="telefone_numero" value="{{ old('telefone_numero') }}">
@@ -95,6 +97,22 @@
                             @foreach ($turno->all() as $tur)
                             <option value="{{$tur->turno_id}}"> {{$tur->turno_nome }} </option>
                             @endforeach
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group{{ $errors->has('cidade_estado') ? ' has-error' : '' }}">
+                      <label for="estado" class="col-md-4 control-label">Estado</label>
+                    <div class="col-md-5">
+                      <select class="col-md-5 control-label" id="cidade_estado" name="cidade_estado">
+                            <option value="AL"> Alagoas </option><option value="AP"> Amapá </option>  <option value="AM"> Amazonas </option>
+                            <option value="BA"> Bahia </option>  <option value="CE"> Ceará </option><option value="DF"> Distrio Federal </option>
+                            <option value="ES"> Espírito Santo </option>  <option value="GO"> Goiás </option>  <option value="MA"> Maranhão </option>
+                            <option value="MT"> Mato Grosso </option><option value="MS"> Mato Grosso do Sul </option>
+                            <option value="MG"> Minas Gerais </option>  <option value="PA"> Pará </option>  <option value="PB"> Paraíba </option>
+                            <option value="PR" selected> Paraná </option>  <option value="PE"> Pernambuco </option>
+                            <option value="PI"> Piauí </option>  <option value="RJ"> Rio de Janeiro </option><option value="RO"> Rondônia </option>
+                            <option value="RR"> Roraima </option><option value="SC"> Santa Catarina </option>
+                            <option value="SP"> São Paulo </option>  <option value="SE"> Sergipe </option>  <option value="TO"> Tocantins </option>
                       </select>
                     </div>
                   </div>

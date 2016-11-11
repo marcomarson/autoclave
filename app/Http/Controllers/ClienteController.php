@@ -44,7 +44,7 @@ class ClienteController extends Controller
         'password_confirmation' => 'required|same:password',
         'telefone_numero' => 'required|numeric|digits_between:8,9|unique:telefone',
         'telefone_ddd' => 'required|numeric|digits:2',
-        'cidade_nome' => 'required|string'
+        'cidade_nome' => 'required'
    ]);
         try{
             $dados=$request->all();
@@ -56,12 +56,12 @@ class ClienteController extends Controller
               ]);
               $cidade= \App\Cidade::where('cidade_nome', strtolower($dados['cidade_nome']))->first();
             }
-
               \App\Telefone::create([
                 'telefone_numero' => $dados['telefone_numero'],
                 'telefone_ddd' => $dados['telefone_ddd']
               ]);
               $tel_id= \App\Telefone::where('telefone_numero', $dados['telefone_numero'])->where('telefone_ddd', $dados['telefone_ddd'])->first();
+
               //dd($tel_id['telefone_id']);
                 return Cliente::create([
                   'nome' => $dados['nome'],

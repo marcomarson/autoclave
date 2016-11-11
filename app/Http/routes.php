@@ -40,6 +40,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::resource('sala', 'SalaController');
     Route::resource('cliente', 'ClienteController');
     Route::resource('equipamento', 'EquipamentoController');
+    Route::resource('conjunto', 'ConjuntoController');
 
     Route::resource('info', 'InformacoesController');
     Route::resource('regEsterilizacao', 'RegEsterilizacaoController');
