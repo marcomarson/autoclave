@@ -10,10 +10,11 @@ use App\Esterilizacao;
 
 class RegEsterilizacaoController extends Controller
 {
-  //public function __construct()
-//  {
-//      $this->middleware('auth');
-//  }
+    public function __construct()
+   {
+       //$this->middleware('client');
+       $this->middleware('client');
+   }
 
      /**
       * Show the form for creating a new resource.
@@ -22,13 +23,14 @@ class RegEsterilizacaoController extends Controller
       */
      public function index()
      {
-      $autoclave = \App\Autoclave::all();
-      $equipamento = \App\Equipamento::all();
-      $sala= \App\Sala::all();
-      return view('registrar.registrar')
-      ->with('autoclave', $autoclave)
-      ->with('equipamento', $equipamento)
-      ->with('sala', $sala);
+
+
+       $autoclave = \App\Autoclave::all();
+       $conjunto = \App\Conjunto::all();
+       $sala= \App\Sala::all();
+       return view('registrar.registrar')
+       ->with('autoclave', $autoclave)
+       ->with('conjunto', $conjunto);
      }
 
      public function store(Request $request){
@@ -36,16 +38,17 @@ class RegEsterilizacaoController extends Controller
 
              $est = new Esterilizacao;
              $est2 = [
-                 'sala_id' => 1,
+                 //'sala_id' => $request->sala,
                  'autoclave_id' => $request->autoclave_id,
-                 'equipamento_id' => $request->equipamento_id,
-                 'pessoa_id' => 1,
+                 'conjunto_id' => $request->conjunto,
+                 'cliente_id' => Auth::guard('client')->user()->cliente_id,
                  'data_inicio' => date('d/m/y'),
-                 'data_final' => date('d/m/y'),
                  'esterilizacao_inf_extra' => 'teste',
-                 'recadastro_id' => 1
+                 'admin_id' => Auth::guard('web')->user()->admin_id,
+                 'rodada'=> 1
              ];
              $est->create($est2);
+             Auth::guard('guard_name')->user()->logout();
 
 
          } catch (Exception $ex) {

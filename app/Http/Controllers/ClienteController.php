@@ -11,9 +11,10 @@ class ClienteController extends Controller
 {
   public function __construct()
   {
-      $this->middleware('auth');
+     $this->middleware('auth');
   }
     public function index(){
+       //return view('client.dashboard');
         $turno = \App\Turno::all();
         $cliente = Cliente::all();
         return view('cliente.index')->with('cliente', $cliente)->with('turno', $turno);
@@ -70,7 +71,7 @@ class ClienteController extends Controller
                   'cidade_id' => $cidade['cidade_id'],
                   'telefone_id' => $tel_id['telefone_id']
                 ]);
-            return \Redirect::to('cliente');
+            //return \Redirect::to('cliente');
 
         } catch (Exception $ex) {
             return 'erro';

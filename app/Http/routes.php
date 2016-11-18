@@ -43,7 +43,6 @@ Route::group(['middleware' => 'web'], function () {
     Route::resource('conjunto', 'ConjuntoController');
 
     Route::resource('info', 'InformacoesController');
-    Route::resource('regEsterilizacao', 'RegEsterilizacaoController');
     Route::resource('retirada', 'RegRetiradaController');
     Route::resource('relatorios', 'RelatoriosController');
 
@@ -60,4 +59,21 @@ Route::group(['middleware' => 'web'], function () {
 
     Route::get('/', 'HomeController@index');
     Route::get('/home', 'HomeController@index');
+
+    Route::get('/client/login','ClientAuth\AuthController@showLoginForm');
+    Route::post('/client/login','ClientAuth\AuthController@login');
+    Route::get('/client/logout','ClientAuth\AuthController@logout');
+
+    // Registration Routes...
+    Route::get('client/register', 'ClientAuth\AuthController@showRegistrationForm');
+    Route::post('client/register', 'ClientAuth\AuthController@register');
+    Route::resource('regEsterilizacao', 'RegEsterilizacaoController');
+// GET     /users                      index   users.index
+// GET     /users/create               create  users.create
+// POST    /users                      store   users.store
+// GET     /users/{user}               show    users.show
+// GET     /users/{user}/edit          edit    users.edit
+// PUT     /users/{user}               update  users.update
+// DELETE  /users/{user}               destroy users.destroy
+
 });

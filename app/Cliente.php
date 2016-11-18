@@ -9,6 +9,7 @@ class Cliente extends Authenticatable
      public $timestamps = false;
      protected $table = 'cliente';
      protected $primaryKey = 'cliente_id';
+     protected $guard = 'client';
     /**
      * The attributes that are mass assignable.
      *
