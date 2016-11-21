@@ -80,6 +80,11 @@
                         <li>
                             <a href="{{url('relatorios')}}"><i class="fa fa-fw fa-bar-chart-o"></i>Relatórios</a>
                         </li>
+                        @if (Auth::user()->admin_permissao == true )
+                          <li>
+                              <a href="{{url('register')}}"><i class="fa fa-fw fa-edit"></i>Registrar Laboratorista</a>
+                          </li>
+                        @endif
 
                     </ul>
             </div>

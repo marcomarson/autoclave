@@ -9,7 +9,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
-class AuthController extends Controller
+class AuthController2 extends Controller
 {
     /*
     |--------------------------------------------------------------------------
@@ -38,8 +38,7 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        $this->middleware($this->guestMiddleware(), ['except' => 'logout']);
-        //$this->middleware('auth');
+        $this->middleware('auth');
     }
 
     /**
@@ -97,7 +96,7 @@ class AuthController extends Controller
             ]);
             $tel_id= \App\Telefone::where('telefone_numero', $dados['telefone_numero'])->where('telefone_ddd', $dados['telefone_ddd'])->first();
             //dd($tel_id['telefone_id']);
-              return Admin::create([
+             Admin::create([
                 'nome' => $dados['nome'],
                 'email' => $dados['email'],
                 'password' => bcrypt($dados['password']),
@@ -106,6 +105,7 @@ class AuthController extends Controller
                 'turno_id' => $dados['turno_id']
               ]);
 
+              return \Redirect::to('home');
 
       }
 }

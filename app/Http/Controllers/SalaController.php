@@ -38,7 +38,7 @@ class SalaController extends Controller
         try{
             $dados=$request->all();
 
-                return Sala::create([
+                Sala::create([
                   'sala_nome' => $dados['nome'],
                   'descricao' => $dados['descricao'],
                 ]);
