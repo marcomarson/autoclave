@@ -2,9 +2,9 @@
 
 namespace App;
 
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Model;
 
-class Conjunto extends Authenticatable
+class Conjunto extends Model
 {
      public $timestamps = false;
      protected $table = 'conjunto';

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Conjunto;
 use App\Sala;
+use App\Equipamento;
+use App\Conjunto_Equipamento;
 
 use App\Http\Requests;
 
@@ -17,13 +19,15 @@ class ConjuntoController extends Controller
     public function index(){
         $conjunto = Conjunto::all();
         $sala = Sala::all();
-        return view('conjunto.index')->with('conjunto', $conjunto)->with('sala', $sala);
+        $equipamento = Equipamento::all();
+        return view('conjunto.index')->with('conjunto', $conjunto)->with('sala', $sala)->with('equipamento', $equipamento);
     }
 
     public function create(){
          $conjunto = Conjunto::all();
          $sala = Sala::all();
-        return view('conjunto.create')->with('conjunto', $conjunto)->with('sala', $sala);
+         $equipamento = Equipamento::all();
+         return view('conjunto.create')->with('conjunto', $conjunto)->with('sala', $sala)->with('equipamento', $equipamento);
     }
 
     public function update(Request $request, $conjunto_id){
@@ -39,19 +43,91 @@ class ConjuntoController extends Controller
     public function store(Request $request){
 
       $this->validate($request, [
-        'nome_do_conjunto_de_equipamentos' => 'required|string',
-        'sala_id' => 'required'
+        'nome' => 'required|string',
+        'equipamento' => 'required'
 
    ]);
         try{
             $dados=$request->all();
+            if(($dados['sala_id'])== ""){
+              Conjunto::create([
+                'conjuntoequipamentos_nome' => $dados['nome']
+              ]);
+            }else {
 
-                return Conjunto::create([
-                  'conjuntoequipamentos_nome' => $dados['nome_do_conjunto_de_equipamentos'],
-                  'sala_id' => $dados['sala_id'],
+                Conjunto::create([
+                  'conjuntoequipamentos_nome' => $dados['nome'],
+                  'sala_id' => $dados['sala_id']
                 ]);
-            return \Redirect::to('conjunto');
+            }
+            $conjunto= \App\Conjunto::where('conjuntoequipamentos_nome', $dados['nome'])->first();
+            Conjunto_Equipamento::create([
+              'conjunto_id' => $conjunto['conjunto_id'],
+              'equipamento_id'=> $dados['equipamento']
+            ]);
+            if( isset($dados['equipamento1'])){
+              Conjunto_Equipamento::create([
+              'conjunto_id' => $conjunto['conjunto_id'],
+                'equipamento_id'=> $dados['equipamento1']
+              ]);
+            }
+            if( isset($dados['equipamento2'])){
+              Conjunto_Equipamento::create([
+              'conjunto_id' => $conjunto['conjunto_id'],
+                'equipamento_id'=> $dados['equipamento2']
+              ]);
+            }
+            if( isset($dados['equipamento3'])){
+              Conjunto_Equipamento::create([
+                'conjunto_id' => $conjunto['conjunto_id'],
+                'equipamento_id'=> $dados['equipamento3']
+              ]);
+            }
+            if( isset($dados['equipamento4'])){
+              Conjunto_Equipamento::create([
+                'conjunto_id' => $conjunto['conjunto_id'],
+                'equipamento_id'=> $dados['equipamento4']
+              ]);
+            }
+            if( isset($dados['equipamento5'])){
+              Conjunto_Equipamento::create([
+                'conjunto_id' => $conjunto['conjunto_id'],
+                'equipamento_id'=> $dados['equipamento5']
+              ]);
+            }
+            if( isset($dados['equipamento6'])){
+              Conjunto_Equipamento::create([
+                'conjunto_id' => $conjunto['conjunto_id'],
+                'equipamento_id'=> $dados['equipamento6']
+              ]);
+            }
+            if( isset($dados['equipamento7'])){
+              Conjunto_Equipamento::create([
+                'conjunto_id' => $conjunto['conjunto_id'],
+                'equipamento_id'=> $dados['equipamento7']
+              ]);
+            }
+            if( isset($dados['equipamento8'])){
+              Conjunto_Equipamento::create([
+                'conjunto_id' => $conjunto['conjunto_id'],
+                'equipamento_id'=> $dados['equipamento8']
+              ]);
+            }
+            if( isset($dados['equipamento9'])){
+              Conjunto_Equipamento::create([
+                'conjunto_id' => $conjunto['conjunto_id'],
+                'equipamento_id'=> $dados['equipamento9']
+              ]);
+            }
+            if( isset($dados['equipamento10'])){
+              Conjunto_Equipamento::create([
+                'conjunto_id' => $conjunto['$conjunto_id'],
+                'equipamento_id'=> $dados['equipamento10']
+              ]);
+            }
 
+
+              return \Redirect::to('conjunto');
         } catch (Exception $ex) {
             return 'erro';
         }

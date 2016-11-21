@@ -10,8 +10,8 @@ class Sala extends Model
   protected $primaryKey = 'sala_id';
     //
      public $fillable = [
-         'sala_id',
-        'descricao'
+         'descricao',
+        'sala_nome'
    ];
    public $timestamps = false;
 }

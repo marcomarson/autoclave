@@ -41,6 +41,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::resource('cliente', 'ClienteController');
     Route::resource('equipamento', 'EquipamentoController');
     Route::resource('conjunto', 'ConjuntoController');
+    Route::resource('disciplina', 'DisciplinaController');
 
     Route::resource('info', 'InformacoesController');
     Route::resource('retirada', 'RegRetiradaController');

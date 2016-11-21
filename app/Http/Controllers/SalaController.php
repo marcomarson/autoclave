@@ -30,15 +30,24 @@ class SalaController extends Controller
 
 
     public function store(Request $request){
-        try{
-            $sala = new Sala;
-            $sala->create($request->all());
+      $this->validate($request, [
+        'nome' => 'required|string',
+        'descricao' => 'required'
 
+   ]);
+        try{
+            $dados=$request->all();
+
+                return Sala::create([
+                  'sala_nome' => $dados['nome'],
+                  'descricao' => $dados['descricao'],
+                ]);
             return \Redirect::to('sala');
 
         } catch (Exception $ex) {
             return 'erro';
         }
+
     }
 
     public function destroy(){

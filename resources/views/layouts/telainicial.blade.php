@@ -63,7 +63,7 @@
                             <a href="{{url('retirada')}}"><i class="fa fa-fw fa-table"></i>Retirada dos Equipamentos</a>
                         </li>
                         <li>
-                            <a href="{{url('cliente')}}"><i class="fa fa-fw fa-edit"></i>Cadastro de Clientes</a>
+                            <a href="{{url('cliente/create')}}"><i class="fa fa-fw fa-edit"></i>Cadastro de Clientes</a>
                         </li>
                         <li>
                             <a href="{{url('sala/create')}}"><i class="fa fa-fw fa-edit"></i>Cadastro de Salas</a>
