@@ -17,7 +17,7 @@ class DisciplinaController extends Controller
     public function index(){
         $conjunto = Conjunto::all();
            $disciplina = Disciplina::all();
-        return view('disciplina.index')->with('conjunto', $conjunto)->with('disciplina', $disciplina);
+        return view('disciplina.create')->with('conjunto', $conjunto)->with('disciplina', $disciplina);
     }
 
     public function create(){
@@ -26,9 +26,29 @@ class DisciplinaController extends Controller
         return view('disciplina.create')->with('conjunto', $conjunto)->with('disciplina', $disciplina);
     }
 
-    public function update(Request $request, $conjunto_id){
+    public function update(Request $request, $materia_id){
+      $this->validate($request, [
+        'conjunto_id' => 'required',
+        'ano' => 'required|numeric',
+        'nome' => 'required|string'
+
+   ]);
+        try{
+            $dados=$request->all();
+              Disciplina::where('materia_id',$materia_id)->update(['conjunto_id' => $dados['conjunto_id'], 'ano' => $dados['ano'], 'materia_nome' => $dados['nome'] ]);
+                return redirect()->route('disciplina.create')
+                                ->with('success','Disciplina atualizada com sucesso');
 
 
+        } catch (Exception $ex) {
+            return 'erro';
+        }
+
+    }
+    public function edit($materia_id){
+        $conjunto = Conjunto::all();
+        $disciplina = Disciplina::where('materia_id',$materia_id)->first();
+        return view('disciplina.edit')->with('disciplina', $disciplina)->with('conjunto', $conjunto);
     }
 
     public function show(){
@@ -52,7 +72,8 @@ class DisciplinaController extends Controller
                   'ano' => $dados['ano'],
                   'materia_nome' => $dados['nome'],
                 ]);
-            return \Redirect::to('disciplina');
+                return redirect()->route('disciplina.create')
+                                ->with('success','Disciplina cadastrada com sucesso');
 
 
         } catch (Exception $ex) {
@@ -60,7 +81,14 @@ class DisciplinaController extends Controller
         }
     }
 
-    public function destroy(){
+    public function destroy($id){
+      $var=\App\Pessoa_disciplina::where('materia_id', $id)->get();
 
+      foreach ($var as $value) {
+          \App\Pessoa_disciplina::where('materia_id',$value['materia_id'])->delete();
+      }
+      Disciplina::find($id)->delete();
+       return redirect()->route('disciplina.create')
+                       ->with('success','Disciplina deletada com sucesso');
     }
 }

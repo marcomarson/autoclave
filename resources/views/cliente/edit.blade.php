@@ -1,39 +1,20 @@
 @extends('layouts.telainicial')
 
 @section('content')
-<script>
-function myFunction() {
-  var input, filter, table, tr, td, i;
-  input = document.getElementById("myInput");
-  filter = input.value.toUpperCase();
-  table = document.getElementById("myTable");
-  tr = table.getElementsByTagName("tr");
-  for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[1];
-    if (td) {
-      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
-        tr[i].style.display = "";
-      } else {
-        tr[i].style.display = "none";
-      }
-    }
-  }
-}
-</script>
 
 <div class="row">
     <div class="col-md-8 col-md-offset-2">
         <div class="panel panel-default">
-            <div class="panel-heading">Registrar Cliente <a  href="#" class='pull-right' data-toggle="tooltip" data-placement="bottom" title="O campo tipo da pessoa indica se a pessoa é um aluno, professor ou pessoa externa. O campo DDD se refere ao DDD do seu número de telefone. Para realizar o cadastro do cliente, basta preencher com os dados do cliente e apertar o botão Cadastrar Cliente. "><i class="fa fa-question-circle fa-2x"></i></a></div>
+            <div class="panel-heading">Editar Cliente  <a  href="#" class='pull-right' data-toggle="tooltip" data-placement="bottom" title="O campo tipo da pessoa indica se a pessoa é um aluno, professor ou pessoa externa. O campo DDD se refere ao DDD do seu número de telefone. Para editar o cliente, basta preencher com os dados e clicar no botão atualizar cliente. "><i class="fa fa-question-circle fa-2x"></i></a></div>
             <div class="panel-body">
                 {{ csrf_field() }}
-                <form class="form-horizontal" role="form" method="POST" action="{{ url('/cliente') }}">
+                {!! Form::model($cliente, ['method' => 'PATCH','route' => ['cliente.update', $cliente->cliente_id], 'class' => 'form-horizontal']) !!}
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                   <div class="form-group{{ $errors->has('nome') ? ' has-error' : '' }}">
                       <label for="nome" class="col-md-4 control-label">Nome</label>
 
                       <div class="col-md-6">
-                          <input id="nome" type="text" class="form-control" name="nome" value="{{ old('nome') }}">
+                          <input id="nome" type="text" class="form-control" name="nome" value="{{ $cliente->nome }}">
 
                           @if ($errors->has('nome'))
                               <span class="help-block">
@@ -43,10 +24,10 @@ function myFunction() {
                       </div>
                   </div>
                   <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                      <label for="email" class="col-md-4 control-label">Email</label>
+                      <label for="email" class="col-md-4 control-label">E-Mail Address</label>
 
                       <div class="col-md-6">
-                          <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}">
+                          <input id="email" type="email" class="form-control" name="email" value="{{ $cliente->email }}">
 
                           @if ($errors->has('email'))
                               <span class="help-block">
@@ -71,7 +52,7 @@ function myFunction() {
                   </div>
 
                   <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
-                      <label for="password_confirmation" class="col-md-4 control-label">Confirmação da Senha</label>
+                      <label for="password_confirmation" class="col-md-4 control-label">Confirm Password</label>
 
                       <div class="col-md-4">
                           <input id="password_confirmation" type="password" class="form-control" name="password_confirmation">
@@ -87,7 +68,7 @@ function myFunction() {
                       <label for="telefone_ddd" class="col-md-4 control-label">DDD</label>
 
                       <div class="col-md-2">
-                          <input id="telefone_ddd" type="text" class="form-control" name="telefone_ddd" value="{{ old('telefone_ddd') }}">
+                          <input id="telefone_ddd" type="text" class="form-control" name="telefone_ddd" value="{{ $tel->telefone_ddd }}">
 
                           @if ($errors->has('telefone_ddd'))
                               <span class="help-block">
@@ -97,10 +78,10 @@ function myFunction() {
                       </div>
                     </div>
                     <div class="form-group{{ $errors->has('telefone_numero') ? ' has-error' : '' }}">
-                      <label for="telefone_numero" class="col-md-4 control-label">Número de telefone</label>
+                      <label for="telefone_numero" class="col-md-4 control-label">Número</label>
 
                       <div class="col-md-3">
-                          <input id="telefone_numero" type="text"  class="form-control" name="telefone_numero" value="{{ old('telefone_numero') }}">
+                          <input id="telefone_numero" type="text"  class="form-control" name="telefone_numero" value="{{ $tel->telefone_numero }}">
 
                           @if ($errors->has('telefone_numero'))
                               <span class="help-block">
@@ -162,7 +143,7 @@ function myFunction() {
                   <div class="form-group{{ $errors->has('cidade_nome') ? ' has-error' : '' }}">
                       <label for="cidade_nome" class="col-md-4 control-label">Cidade</label>
                     <div class="col-md-4">
-                      <input id="cidade_nome" type="text" class="form-control" name="cidade_nome" value="{{ old('cidade_nome') }}">
+                      <input id="cidade_nome" type="text" class="form-control" name="cidade_nome" value="{{ $cidade->cidade_nome }}">
 
                       @if ($errors->has('cidade_nome'))
                           <span class="help-block">
@@ -176,63 +157,17 @@ function myFunction() {
                   <div class="form-group">
                       <div class="col-md-offset-5 col-md-1">
                           <button type="submit" class="btn btn-primary">
-                              <i class="fa fa-btn fa-sign-in"></i> Cadastrar Cliente
+                              <i class="fa fa-btn fa-sign-in"></i> Atualizar Cliente
                           </button>
                       </div>
                   </div>
 
 
-                </form>
+                  {!! Form::close() !!}
 
             </div>
         </div>
     </div>
 </div>
-<div class="container">
-  <div class="row">
-    <div class="col-lg-12">
-      <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Busca pelo nome" title="Digite um nome">
-      <table id="myTable" class="table table-responsive table-striped table-hover">
-        <thead>
-          <tr>
-            <th class="col-md-1">Cliente ID</th>
-            <th class='col-md-1'>Nome</th>
-            <th class="col-md-1">Email</th>
-            <th class="col-md-1">Ações</th>
-          </tr>
-        </thead>
-        <tbody>
 
-          @if(!$cliente->isEmpty())
-            @foreach($cliente as $key => $value)
-              <tr>
-                <td>
-                  {{$value->cliente_id}}
-                </td>
-                <td>
-                  {{$value->nome}}
-                </td>
-                <td>
-                  {{$value->email}}
-                </td>
-                <td>
-                  {!! Form::open(['method' => 'DELETE','route' => ['cliente.destroy', $value->cliente_id],'style'=>'display:inline']) !!}
-                  {!! Form::submit('Deletar', ['class' => 'btn btn-danger']) !!}
-                  {!! Form::close() !!}
-                  <a class="btn btn-primary" href="{{ route('cliente.edit',$value->cliente_id) }}">Editar</a>
-
-                </td>
-              </tr>
-            @endforeach
-          @else
-            <tr>
-              <td colspan="3">Não há registros de clientes</td>
-            </tr>
-          @endif
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-</div>
 @endsection

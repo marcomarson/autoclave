@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Esterilizacao;
+use Illuminate\Support\Facades\Auth;
 
 class RegEsterilizacaoController extends Controller
 {
@@ -27,7 +28,6 @@ class RegEsterilizacaoController extends Controller
 
        $autoclave = \App\Autoclave::all();
        $conjunto = \App\Conjunto::all();
-       $sala= \App\Sala::all();
        return view('registrar.registrar')
        ->with('autoclave', $autoclave)
        ->with('conjunto', $conjunto);
@@ -35,20 +35,21 @@ class RegEsterilizacaoController extends Controller
 
      public function store(Request $request){
          try{
+           $current_time = \Carbon\Carbon::now()->toDateTimeString();
+           $dados=$request->all();
+             Esterilizacao::create([
+               'autoclave_id' => $dados['autoclave_id'],
+               'conjunto_id' => $dados['conjunto_id'],
+               'cliente_id' => Auth::guard('client')->user()->cliente_id,
+               'data_inicio' => $current_time,
+               'esterilizacao_inf_extra' => 'teste',
+               'admin_id' => Auth::guard('web')->user()->admin_id,
+               'rodada'=> 1
+              ]);
 
-             $est = new Esterilizacao;
-             $est2 = [
-                 //'sala_id' => $request->sala,
-                 'autoclave_id' => $request->autoclave_id,
-                 'conjunto_id' => $request->conjunto,
-                 'cliente_id' => Auth::guard('client')->user()->cliente_id,
-                 'data_inicio' => date('d/m/y'),
-                 'esterilizacao_inf_extra' => 'teste',
-                 'admin_id' => Auth::guard('web')->user()->admin_id,
-                 'rodada'=> 1
-             ];
-             $est->create($est2);
-             Auth::guard('guard_name')->user()->logout();
+              //$request->session()->flush();
+              return redirect()->route('register.register')
+                              ->with('success','Esterilização cadastrada com sucesso');
 
 
          } catch (Exception $ex) {

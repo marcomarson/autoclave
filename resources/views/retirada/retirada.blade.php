@@ -25,7 +25,7 @@ function myFunction() {
   <div class="row">
     <div class="col-lg-12">
       <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Busca pelo nome" title="Digite um nome">
-      <a  href="#" class='pull-right' data-toggle="tooltip" data-placement="bottom" title="Esta tela mostra todas as esterilizações que ainda estão na autoclave, quando o conjunto de equipamentos sair da autoclave, apertar Retirada."><i class="fa fa-question-circle fa-2x"></i></a>
+      <a  href="#" class='pull-right' data-toggle="tooltip" data-placement="bottom" title="Esta tela mostra todas as esterilizacoes que já estão esterilizadas,mas estão a espera do aluno, quando o aluno chegar apertar o botão entregar na esterilização correta."><i class="fa fa-question-circle fa-2x"></i></a>
       <table id="myTable" class="table table-responsive table-striped table-hover">
         <thead>
           <tr>
@@ -33,7 +33,7 @@ function myFunction() {
             <th class='col-md-1'>Nome do Cliente</th>
             <th class="col-md-1">Data de Início</th>
             <th class="col-md-1">Autoclave</th>
-            <th class="col-md-1">Ações</th>
+            <th class="col-md-1">Ação</th>
           </tr>
         </thead>
         <tbody>
@@ -55,17 +55,16 @@ function myFunction() {
                 </td>
                 <td>
 
-                  {!! Form::open(['method' => 'DELETE','route' => ['info.destroy', $value->esterilizacao_id],'style'=>'display:inline']) !!}
-                  {!! Form::submit('Tirar da autoclave', ['class' => 'btn btn-danger']) !!}
+                  {!! Form::open(['method' => 'DELETE','route' => ['retirada.destroy', $value->esterilizacao_id],'style'=>'display:inline']) !!}
+                  {!! Form::submit('Entregar', ['class' => 'btn btn-danger']) !!}
                   {!! Form::close() !!}
-                  <a class="btn btn-primary" href="{{ route('info.edit',$value->esterilizacao_id) }}">Recadastrar</a>
 
                 </td>
               </tr>
             @endforeach
           @else
             <tr>
-              <td colspan="3">Não há registros de clientes</td>
+              <td colspan="3">Não há registros de esterilizações</td>
             </tr>
           @endif
         </tbody>

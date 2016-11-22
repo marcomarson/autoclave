@@ -9,6 +9,7 @@ class Aluno extends Model
   public $timestamps = false;
   protected $table = 'aluno';
   protected $primaryKey = 'cliente_id';
+  public $incrementing = false;
  /**
   * The attributes that are mass assignable.
   *

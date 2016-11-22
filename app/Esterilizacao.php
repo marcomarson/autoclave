@@ -11,14 +11,16 @@ class Esterilizacao extends Model {
     //
     public $fillable = [
         'autoclave_id',
-        'sala_id',
-        'autoclave_id',
-        'equipamento_id',
-        'pessoa_id',
+        'cliente_id',
+        'admin_id',
+        'conjunto_id',
         'esterilizacao_inf_extra',
         'data_inicio',
         'data_final',
-        'recadastro_id'
+        'data_retirada',
+        'Parent_esterilizacao_id',
+        'rodada'
+
     ];
     public $timestamps = false;
 
@@ -28,6 +30,15 @@ class Esterilizacao extends Model {
 
     public function equipamento() {
         return $this->belongsTo('\App\Equipamento', 'equipamento_id', 'equipamento_id');
+    }
+    public function cliente() {
+        return $this->belongsTo('\App\Cliente', 'cliente_id', 'cliente_id');
+    }
+    public function conjunto() {
+        return $this->belongsTo('\App\Conjunto', 'conjunto_id', 'conjunto_id');
+    }
+    public function admin() {
+        return $this->belongsTo('\App\Admin', 'admin_id', 'admin_id');
     }
 
 }

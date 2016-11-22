@@ -38,7 +38,7 @@ class AuthController2 extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth', ['except' => 'logout']);
     }
 
     /**
@@ -63,11 +63,15 @@ class AuthController2 extends Controller
 
     public function index()
     {
-     $cidade = \App\Cidade::all();
-     $turno = \App\Turno::all();
-     return view('auth.register')
-     ->with('cidade', $cidade)
-     ->with('turno', $turno);
+    //if (Auth::user()->admin_permissao == true ){
+      $cidade = \App\Cidade::all();
+      $turno = \App\Turno::all();
+      return view('auth.register')
+      ->with('cidade', $cidade)
+      ->with('turno', $turno);
+    //}
+
+
     }
 
 

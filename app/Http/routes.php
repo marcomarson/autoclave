@@ -35,24 +35,34 @@ Route::get('Relatorios', function () {
     return 'Mostrar relatórios pertinentes ao uso das autoclaves(Não implementado)';
 });
 
-
+Route::get('register2', 'Auth\AuthController2@index');
+Route::post('register2', 'Auth\AuthController2@register');
 Route::group(['middleware' => 'web'], function () {
     Route::resource('sala', 'SalaController');
     Route::resource('cliente', 'ClienteController');
     Route::resource('equipamento', 'EquipamentoController');
     Route::resource('conjunto', 'ConjuntoController');
     Route::resource('disciplina', 'DisciplinaController');
+    Route::resource('autoclave', 'AutoclaveController');
+    Route::resource('laboratorista', 'LaboratoristaController');
 
     Route::resource('info', 'InformacoesController');
     Route::resource('retirada', 'RegRetiradaController');
     Route::resource('relatorios', 'RelatoriosController');
 
+    Route::get('/pdfdaily','PDFController@index');
+    Route::get('/pdfmonth','PDFController@index2');
+    Route::get('/pdfyear','PDFController@index3');
+
     Route::get('login', 'Auth\AuthController@showLoginForm');
     Route::post('login', 'Auth\AuthController@login');
     Route::get('logout', 'Auth\AuthController@logout');
 
-    Route::get('register', 'Auth\AuthController2@index');
-    Route::post('register', 'Auth\AuthController2@register');
+    Route::get('reg', 'ClientAuth\AuthController@logout');
+    Route::get('account/sign-out', 'ClientAuth\AuthController@logout');
+
+
+
 
     Route::get('password/reset/{token?}', 'Auth\PasswordController@showResetForm');
     Route::post('password/email', 'Auth\PasswordController@sendResetLinkEmail');
@@ -64,6 +74,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/client/login','ClientAuth\AuthController@showLoginForm');
     Route::post('/client/login','ClientAuth\AuthController@login');
     Route::get('/client/logout','ClientAuth\AuthController@logout');
+
 
     // Registration Routes...
     Route::get('client/register', 'ClientAuth\AuthController@showRegistrationForm');

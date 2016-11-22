@@ -15,9 +15,45 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
     <link href="{{ URL::asset('css/sb-admin.css') }}" rel="stylesheet">
+    <style>
+    * {
+      box-sizing: border-box;
+    }
 
+    #myInput {
+      background-image: url('/css/searchicon.png');
+      background-position: 10px 10px;
+      background-repeat: no-repeat;
+      width: 100%;
+      font-size: 16px;
+      padding: 12px 20px 12px 40px;
+      border: 1px solid #ddd;
+      margin-bottom: 12px;
+    }
+
+    #myTable {
+      border-collapse: collapse;
+      width: 100%;
+      border: 1px solid #ddd;
+      font-size: 18px;
+    }
+
+    #myTable th, #myTable td {
+      text-align: left;
+      padding: 12px;
+    }
+
+    #myTable tr {
+      border-bottom: 1px solid #ddd;
+    }
+
+    #myTable tr.header, #myTable tr:hover {
+      background-color: #f1f1f1;
+    }
+    </style>
 </head>
 <body id="app-layout">
+
     <div id="wrapper">
         <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container">
@@ -82,7 +118,10 @@
                         </li>
                         @if (Auth::user()->admin_permissao == true )
                           <li>
-                              <a href="{{url('register')}}"><i class="fa fa-fw fa-edit"></i>Registrar Laboratorista</a>
+                              <a href="{{url('laboratorista')}}"><i class="fa fa-fw fa-edit"></i>Registrar Laboratorista</a>
+                          </li>
+                          <li>
+                              <a href="{{url('autoclave')}}"><i class="fa fa-fw fa-edit"></i>Registrar Autoclave</a>
                           </li>
                         @endif
 
@@ -97,6 +136,12 @@
         <!-- JavaScripts -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+        <script>
+        $(document).ready(function(){
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+        </script>
 
 </body>
 </html>

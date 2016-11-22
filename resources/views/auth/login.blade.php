@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Login</div>
+                <div class="panel-heading">Login<a  href="#" class='pull-right' data-toggle="tooltip" data-placement="bottom" title="Para realizar o login no sistema, é necessário ser cadastrado por um administrador, caso já possua uma conta, só entrar com seu email e senha e apertar o botão Login."><i class="fa fa-question-circle fa-2x"></i></a></div>
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
                         {{ csrf_field() }}

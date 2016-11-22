@@ -7,11 +7,11 @@
     <div class="panel panel-default">
       <div class="panel-heading">Relatórios</div>
       <div class="panel-body">
-        <button type="button" class="btn btn-large">Relatório Diário</button>
-        <button type="button" class="btn btn-large">Relatório Semanal</button>
-        <button type="button" class="btn btn-large">Relatório Mensal</button>
-        <button type="button" class="btn btn-large">Relatório Semestral</button> <br/><br/>
-        <button type="button" class="btn btn-large">Relatório de Falhas</button> 
+        <a class="btn btn-primary" href="{{ url('pdfdaily') }}">Relatório Diário</a>
+        <a class="btn btn-primary" href="{{ url('pdfmonth') }}">Relatório Mensal</a>
+        <a class="btn btn-primary" href="{{ url('pdfyear') }}">Relatório Semestral</a>
+      
+        <button type="button" class="btn btn-large">Relatório de Falhas</button>
 
 
       </div>

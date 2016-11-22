@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Login do Cliente</div>
+                <div class="panel-heading">Login do Cliente<a  href="#" class='pull-right' data-toggle="tooltip" data-placement="bottom" title="Nesta interface, os dados a serem colocados pertencem ao cliente."><i class="fa fa-question-circle fa-2x"></i></a></div>
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/client/login') }}">
                         {{ csrf_field() }}

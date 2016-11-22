@@ -26,6 +26,6 @@ class Conjunto_Equipamento extends Model
      return $this->belongsTo('\App\Conjunto', 'conjunto_id', 'conjunto_id');
  }
  public function equipamento() {
-     return $this->belongsTo('\App\Equipamento', 'equipamento_id', 'equipamento_id');
+     return $this->hasMany('\App\Equipamento', 'equipamento_id', 'equipamento_id');
  }
 }
