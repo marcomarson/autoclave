@@ -85,6 +85,19 @@ function myFunction() {
             </div>
           </div>
         </form>
+        <form class="form-horizontal" role="form" method="GET" action="{{ url('/account/sign-out') }}">
+          {{ csrf_field() }}
+
+
+          <div class="form-group">
+            <div class="col-md-6 col-md-offset-4">
+              <button type="submit" class="btn btn-primary">
+                <i class="fa fa-btn fa-sign-out"></i> Logout
+              </button>
+
+            </div>
+          </div>
+        </form>
       </div>
     </div>
   </div>

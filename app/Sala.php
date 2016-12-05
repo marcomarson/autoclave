@@ -14,4 +14,8 @@ class Sala extends Model
         'sala_nome'
    ];
    public $timestamps = false;
+   public function conjunto()
+   {
+       return $this->hasMany('App\Conjunto');
+   }
 }

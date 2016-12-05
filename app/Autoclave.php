@@ -15,4 +15,8 @@ class Autoclave extends Model
         'manutencao'
    ];
    public $timestamps = false;
+   public function esterilizacao()
+   {
+       return $this->hasMany('App\Esterilizacao');
+   }
 }

@@ -26,4 +26,16 @@ class Conjunto extends Model
     public function sala() {
         return $this->belongsTo('\App\Sala', 'sala_id', 'sala_id');
     }
+    public function disciplina()
+    {
+        return $this->hasMany('App\Disciplina');
+    }
+    public function conjunto_equipamento()
+    {
+        return $this->hasMany('App\Conjunto_Equipamento');
+    }
+    public function esterilizacao()
+    {
+        return $this->hasMany('App\Esterilizacao');
+    }
 }

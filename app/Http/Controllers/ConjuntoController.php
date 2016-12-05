@@ -20,11 +20,12 @@ class ConjuntoController extends Controller
         $conjunto = Conjunto::all();
         $sala = Sala::all();
         $equipamento = Equipamento::all();
-        return view('conjunto.index')->with('conjunto', $conjunto)->with('sala', $sala)->with('equipamento', $equipamento);
+        return view('conjunto.create')->with('conjunto', $conjunto)->with('sala', $sala)->with('equipamento', $equipamento);
     }
 
     public function create(){
          $conjunto = Conjunto::all();
+        #dd(!$conjunto->isEmpty());
          $sala = Sala::all();
          $equipamento = Equipamento::all();
          return view('conjunto.create')->with('conjunto', $conjunto)->with('sala', $sala)->with('equipamento', $equipamento);
@@ -195,15 +196,16 @@ class ConjuntoController extends Controller
     }
 
     public function destroy($id){
-      $var=\App\Conjunto_Equipamento::where('conjunto_id', $id)->get();
+      $var=Conjunto_Equipamento::where('conjunto_id', $id)->get();
 
       foreach ($var as $value) {
-          \App\Conjunto_Equipamento::where('conjunto_equipamento_id',$value['conjunto_equipamento_id'])->delete();
+          Conjunto_Equipamento::where('conjunto_equipamento_id',$value['conjunto_equipamento_id'])->delete();
       }
       $var2=\App\Esterilizacao::where('conjunto_id',$id)->get();
       foreach ($var2 as $value) {
           \App\Esterilizacao::where('esterilizacao_id',$value['esterilizacao_id'])->delete();
       }
+        Conjunto::find($id)->disciplina()->delete();
         Conjunto::find($id)->delete();
        return redirect()->route('conjunto.create')
                        ->with('success','Conjunto deletado com sucesso');

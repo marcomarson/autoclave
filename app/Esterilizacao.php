@@ -40,5 +40,8 @@ class Esterilizacao extends Model {
     public function admin() {
         return $this->belongsTo('\App\Admin', 'admin_id', 'admin_id');
     }
+    public function esterilizacao(){
+      return $this->belongsTo('\App\Esterilizacao', 'admin_id', 'Parent_esterilizacao_id');
+    }
 
 }

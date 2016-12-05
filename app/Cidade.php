@@ -14,4 +14,12 @@ class Cidade extends Model
         'cidade_nome'
    ];
    public $timestamps = false;
+   public function admin()
+   {
+       return $this->hasMany('App\Admin');
+   }
+   public function cliente()
+   {
+       return $this->hasOne('App\Cliente');
+   }
 }

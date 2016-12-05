@@ -26,4 +26,8 @@ class Disciplina extends Model
  public function conjunto() {
      return $this->belongsTo('\App\Conjunto', 'conjunto_id', 'conjunto_id');
  }
+ public function pessoa_disciplina()
+ {
+     return $this->hasMany('App\Pessoa_disciplina');
+ }
 }

@@ -198,7 +198,6 @@ myDiv2.appendChild(selectList);
           </tr>
         </thead>
         <tbody>
-
           @if(!$conjunto->isEmpty())
             @foreach($conjunto as $key => $value)
               <tr>
@@ -223,7 +222,7 @@ myDiv2.appendChild(selectList);
             @endforeach
           @else
             <tr>
-              <td colspan="3">Não há registros de disciplinas</td>
+              <td colspan="3">Não há registros de conjuntos de equipamentos</td>
             </tr>
           @endif
         </tbody>

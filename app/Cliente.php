@@ -33,4 +33,8 @@ class Cliente extends Authenticatable
     public function telefone() {
         return $this->belongsTo('\App\Telefone', 'telefone_id', 'telefone_id');
     }
+    public function pessoa_disciplina()
+    {
+        return $this->hasMany('App\Pessoa_disciplina');
+    }
 }

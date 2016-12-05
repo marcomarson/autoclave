@@ -66,10 +66,10 @@ class EquipamentoController extends Controller
     }
 
     public function destroy($id){
-      $var=\App\Conjunto_Equipamento::where('equipamento_id', $id)->get();
-
+      $var=Equipamento::find($id)->conjunto_equipamento()->get();
       foreach ($var as $value) {
-          \App\Conjunto_Equipamento::where('equipamento_id',$value['equipamento_id'])->delete();
+          \App\Conjunto::where('conjunto_id',$value['conjunto_id'])->first()->conjunto_equipamento()->delete();
+          \App\Conjunto::where('conjunto_id',$value['conjunto_id'])->delete();
       }
       Equipamento::find($id)->delete();
        return redirect()->route('equipamento.create')

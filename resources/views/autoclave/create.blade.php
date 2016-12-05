@@ -57,7 +57,7 @@ function myFunction() {
                       <label for="nome" class="col-md-4 control-label">Em manutenção</label>
                     <div class="col-md-6">
                       <div class="checkbox">
-                        <input type="checkbox" id="manutencao"  name="manutencao" value="">
+                        <input type="checkbox" id="manutencao"  name="manutencao">
                         @if ($errors->has('manutencao'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('manutencao') }}</strong>
@@ -127,7 +127,9 @@ function myFunction() {
                   {{$value->marca}}
                 </td>
                 <td>
-                  {{$value->manutencao}}
+                  @if($value->manutencao == true)
+                    Sim
+                  @endif
                 </td>
                 <td>
                   {{$value->autoclave_inf_extra}}

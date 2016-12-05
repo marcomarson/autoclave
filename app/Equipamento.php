@@ -13,4 +13,8 @@ class Equipamento extends Model
         'equipamento_nome'
    ];
    public $timestamps = false;
+   public function conjunto_equipamento()
+   {
+       return $this->hasMany('App\Conjunto_Equipamento');
+   }
 }

@@ -65,12 +65,21 @@ class AutoclaveController extends Controller
    ]);
         try{
             $equip=$request->all();
-            Autoclave::create([
-              'autoclave_inf_extra' => $equip['inf'],
-              'marca'=>$equip['marca'],
-              'manutencao'=>FALSE
+            if(isset($equip['manutencao'])){
+              Autoclave::create([
+                'autoclave_inf_extra' => $equip['inf'],
+                'marca'=>$equip['marca'],
+                'manutencao'=>'true'
 
-            ]);
+              ]);
+            }else {
+              Autoclave::create([
+                'autoclave_inf_extra' => $equip['inf'],
+                'marca'=>$equip['marca'],
+                'manutencao'=>'false'
+
+              ]);
+            }
 
             return redirect()->route('autoclave.create')
                             ->with('success','Autoclave cadastrada com sucesso');

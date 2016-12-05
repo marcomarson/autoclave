@@ -36,4 +36,8 @@ class Admin extends Authenticatable
     public function telefone() {
         return $this->belongsTo('\App\Telefone', 'telefone_id', 'telefone_id');
     }
+    public function esterilizacao()
+    {
+        return $this->hasMany('App\Esterilizacao');
+    }
 }
