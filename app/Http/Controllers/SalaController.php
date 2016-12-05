@@ -10,12 +10,12 @@ use App\Http\Requests;
 class SalaController extends Controller
 {
     public function index(){
-        $sala = Sala::all();
+        $sala = Sala::orderBy('sala_id', 'desc')->take(10)->get();
         return view('sala.create')->with('sala', $sala);
     }
 
     public function create(){
-         $sala = Sala::all();
+         $sala = Sala::orderBy('sala_id', 'desc')->take(10)->get();
         return view('sala.create')->with('sala', $sala);
     }
 

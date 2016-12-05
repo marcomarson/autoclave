@@ -16,13 +16,13 @@ class DisciplinaController extends Controller
   }
     public function index(){
         $conjunto = Conjunto::all();
-           $disciplina = Disciplina::all();
+        $disciplina = Disciplina::orderBy('materia_id', 'desc')->take(10)->get();
         return view('disciplina.create')->with('conjunto', $conjunto)->with('disciplina', $disciplina);
     }
 
     public function create(){
          $conjunto = Conjunto::all();
-         $disciplina = Disciplina::all();
+         $disciplina = Disciplina::orderBy('materia_id', 'desc')->take(10)->get();
         return view('disciplina.create')->with('conjunto', $conjunto)->with('disciplina', $disciplina);
     }
 

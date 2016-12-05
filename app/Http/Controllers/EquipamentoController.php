@@ -14,22 +14,22 @@ class EquipamentoController extends Controller
       $this->middleware('auth');
   }
     public function index(){
-        $equip = Equipamento::all();
+        $equip = Equipamento::orderBy('equipamento_id', 'desc')->take(7)->get();
         return view('equipamento.create')->with('equipamento', $equip);
     }
 
     public function create(){
-         $equip = Equipamento::all();
+        $equip = Equipamento::orderBy('equipamento_id', 'desc')->take(7)->get();
         return view('equipamento.create')->with('equipamento', $equip);
     }
 
     public function update(Request $request, $equipamento_id){
       $equip=$request->all();
       $this->validate($request, [
-        'equipamento_nome' => $equip['nome']
-      ]);
+        'equipamento_nome' => 'required|string|unique:equipamento'
+   ]);
       try{
-          Equipamento::where('equipamento_id',$equipamento_id)->update(['equipamento_nome' => $equip['nome']]);
+          Equipamento::where('equipamento_id',$equipamento_id)->update(['equipamento_nome' => $equip['equipamento_nome']]);
           return redirect()->route('equipamento.create')
                         ->with('success','Equipamento atualizado com sucesso');
 
@@ -51,10 +51,14 @@ class EquipamentoController extends Controller
 
 
     public function store(Request $request){
+      $this->validate($request, [
+        'equipamento_nome' => 'required|unique:equipamentoodontologico'
+   ]);
         try{
             $equip=$request->all();
+
             Equipamento::create([
-              'equipamento_nome' => $equip['nome']
+              'equipamento_nome' => $equip['equipamento_nome']
             ]);
 
             return redirect()->route('equipamento.create')
