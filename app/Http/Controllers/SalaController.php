@@ -69,14 +69,15 @@ class SalaController extends Controller
     }
 
     public function destroy($id){
-      $varConjunto = \App\Conjunto::where('sala_id', $id)->get();
-       foreach ($varConjunto as $value) {
-           \App\Conjunto_Equipamento::where('equipamento_id',$value['equipamento_id'])->delete();
-       }
-       \App\Conjunto::where('sala_id', $id)->delete();
+      $var2=\App\Conjunto::where('sala_id', $id)->get();
+      foreach ($var2 as $value) {
+          \App\Conjunto::find($value['conjunto_id'])->conjunto_equipamento()->delete();
+          \App\Conjunto::find($value['conjunto_id'])->disciplina()->delete();
+          \App\Conjunto::find($value['conjunto_id'])->esterilizacao()->delete();
+          \App\Conjunto::find($value['conjunto_id'])->delete();
+      }
        Sala::where('sala_id', $id)->delete();
-      //
-      // $var=\App\Conjunto_Equipamento::where('equipamento_id', $id)->get();
+
         return redirect()->route('sala.create')->with('success','Equipamento deletado com sucesso');
     }
 }
