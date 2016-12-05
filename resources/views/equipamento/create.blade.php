@@ -39,7 +39,7 @@ function myFunction() {
                 {{ csrf_field() }}
                 <form class="form-horizontal" role="form" method="POST" action="{{ url('/equipamento') }}">
                   <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                  <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                  <div class="form-group{{ $errors->has('equipamento_nome') ? ' has-error' : '' }}">
                       <label for="nome completo do equipamento" class="col-md-4 control-label">Nome do Equipamento</label>
 
                       <div class="col-md-6">
