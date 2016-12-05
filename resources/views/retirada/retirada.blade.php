@@ -31,7 +31,7 @@ function myFunction() {
           <tr>
             <th class="col-md-1">Esterilização ID</th>
             <th class='col-md-1'>Nome do Cliente</th>
-            <th class="col-md-1">Data de Início</th>
+            <th class="col-md-1">Data de Término</th>
             <th class="col-md-1">Autoclave</th>
             <th class="col-md-1">Ação</th>
           </tr>
@@ -64,7 +64,7 @@ function myFunction() {
             @endforeach
           @else
             <tr>
-              <td colspan="3">Não há registros de esterilizações</td>
+              <td colspan="3">Não há registros de esterilizações para serem retirados</td>
             </tr>
           @endif
         </tbody>

@@ -77,7 +77,6 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> {{ Auth::user()->nome }} <b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li class="divider"></li>
                             <li>
                                 <a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a>
                             </li>
