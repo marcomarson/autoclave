@@ -1,10 +1,11 @@
 @extends('layouts.telainicial')
 @section('content')
 @if (isset($success))
+{{dd($success)}}
   <div class="row">
       <div class="col-md-8 col-md-offset-2">
           <div class="panel panel-default">
-              <div class="panel-heading"> {{$success}}
+              <div class="panel-heading"> Entrou{{$success}}
               </div>
           </div>
       </div>
@@ -18,15 +19,15 @@
                 {{ csrf_field() }}
                 <form class="form-horizontal" role="form" method="POST" action="{{ url('/sala') }}">
                   <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                  <div class="form-group{{ $errors->has('nome') ? ' has-error' : '' }}">
-                      <label for="nome" class="col-md-4 control-label">Nome da Sala</label>
+                  <div class="form-group{{ $errors->has('sala_nome') ? ' has-error' : '' }}">
+                      <label for="sala_nome" class="col-md-4 control-label">Nome da Sala</label>
 
                       <div class="col-md-4">
-                          <input id="nome" type="text" class="form-control" name="nome" value="{{ old('nome') }}">
+                          <input id="sala_nome" type="text" class="form-control" name="sala_nome" value="{{ old('sala_nome') }}">
 
-                          @if ($errors->has('nome'))
+                          @if ($errors->has('sala_nome'))
                               <span class="help-block">
-                                  <strong>{{ $errors->first('nome') }}</strong>
+                                  <strong>{{ $errors->first('sala_nome') }}</strong>
                               </span>
                           @endif
                       </div>

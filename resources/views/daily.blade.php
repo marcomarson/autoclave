@@ -33,7 +33,7 @@
             @endforeach
           @else
             <tr>
-              <td colspan="3">Não há registros de clientes</td>
+              <td colspan="3">Não há registros de esterilizações</td>
             </tr>
           @endif
         </tbody>

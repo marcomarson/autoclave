@@ -70,17 +70,19 @@ class LaboratoristaController extends Controller
 
     }
     public function update(Request $request, $id){
+      $dados=$request->all();
+      $clienteupdate= Admin::where('admin_id', $id)->first();
+      $tel= \App\Telefone::where('telefone_id',$clienteupdate['telefone_id'])->first();
       $this->validate($request, [
         'nome' => 'required|string',
-        'email' => 'required|email|max:60',
+        'email' => 'required|email|max:60|unique:admin,email,'.$id.',admin_id',
         'password' => 'required|confirmed|min:6',
         'password_confirmation' => 'required|same:password',
-        'telefone_numero' => 'required|numeric|digits_between:8,9',
+        'telefone_numero' => 'required|numeric|digits_between:8,9|unique:telefone,telefone_numero,'.$tel['telefone_id'].',telefone_id',
         'telefone_ddd' => 'required|numeric|digits:2',
         'cidade_nome' => 'required'
    ]);
         try{
-            $dados=$request->all();
 
             $cidade= \App\Cidade::where('cidade_nome', strtolower ($dados['cidade_nome']))->first();
             if (is_null($cidade)){
@@ -173,13 +175,16 @@ class LaboratoristaController extends Controller
                 'turno_id' => $dados['turno_id']
               ]);
 
-              return \Redirect::to('home');
+              return redirect()->route('laboratorista.create')
+                              ->with('success','Laboratorista criada com sucesso');
 
       }
       public function destroy($id){
         $clienteupdate= Admin::where('admin_id', $id)->first();
 
-        \App\Esterilizacao::where('admin_id', $id)->delete();
+        Admin::where('admin_id', $id)->first()->esterilizacao()->delete();
+
+        \App\Telefone::where('telefone_id',$clienteupdate['telefone_id'])->delete();
         Admin::where('admin_id', $id)->delete();
         $tel= \App\Telefone::where('telefone_id',$clienteupdate['telefone_id'])->delete();
         return redirect()->route('laboratorista.create')

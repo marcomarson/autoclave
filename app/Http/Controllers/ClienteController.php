@@ -16,29 +16,31 @@ class ClienteController extends Controller
     public function index(){
        //return view('client.dashboard');
         $turno = \App\Turno::all();
-        $cliente = Cliente::all();
+        $cliente = Cliente::orderBy('cliente_id', 'desc')->take(7)->get();
         return view('cliente.create')->with('cliente', $cliente)->with('turno', $turno);
     }
 
     public function create(){
-         $cliente = Cliente::all();
+           $cliente = Cliente::orderBy('cliente_id', 'desc')->take(7)->get();
          $turno = \App\Turno::all();
         return view('cliente.create')->with('cliente', $cliente)->with('turno', $turno);
     }
 
     public function update(Request $request, $cliente_id){
+      $dados=$request->all();
+      $clienteupdate= Cliente::where('cliente_id', $cliente_id)->first();
+      $tel= \App\Telefone::where('telefone_id',$clienteupdate['telefone_id'])->first();
       $this->validate($request, [
         'nome' => 'required|string',
-        'email' => 'required|email|max:60|unique:cliente',
+        'email' => 'required|email|max:60|unique:cliente,email,'.$cliente_id.',cliente_id',
         'password' => 'required|confirmed|min:6',
         'password_confirmation' => 'required|same:password',
-        'telefone_numero' => 'required|numeric|digits_between:8,9|unique:telefone',
+        'telefone_numero' => 'required|numeric|digits_between:8,9|unique:telefone,telefone_numero,'.$tel['telefone_id'].',telefone_id',
         'telefone_ddd' => 'required|numeric|digits:2',
         'cidade_nome' => 'required',
-        'ra' => 'numeric|digits_between:8-12|unique:aluno'
+        'ra' => 'numeric|digits_between:8-12|unique:aluno,ra,'.$cliente_id.',cliente_id'
    ]);
         try{
-            $dados=$request->all();
             Disciplina::where('materia_id',$materia_id)->update(['conjunto_id' => $dados['conjunto_id'], 'ano' => $dados['ano'], 'materia_nome' => $dados['nome'] ]);
             $cidade= \App\Cidade::where('cidade_nome', strtolower ($dados['cidade_nome']))->first();
             if (is_null($cidade)){
@@ -161,9 +163,11 @@ class ClienteController extends Controller
       }elseif(!is_null($varteste3)){
         \App\Pessoas_externas::where('cliente_id', $cliente_id)->delete();
       }
+      Cliente::where('cliente_id', $cliente_id)->first()->esterilizacao()->delete();
+      Cliente::where('cliente_id', $cliente_id)->first()->pessoa_disciplina()->delete();
 
       Cliente::where('cliente_id', $cliente_id)->delete();
-      $tel= \App\Telefone::where('telefone_id',$clienteupdate['telefone_id'])->delete();
+        \App\Telefone::where('telefone_id',$clienteupdate['telefone_id'])->delete();
       return redirect()->route('cliente.create')
                       ->with('success','Cliente removido com sucesso');
 

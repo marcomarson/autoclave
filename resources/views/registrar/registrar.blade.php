@@ -55,7 +55,7 @@ function myFunction() {
               </select>
               @if ($errors->has('conjunto_id'))
                   <span class="help-block">
-                      <strong>{{ $errors->first('conjunto_id') }}</strong>
+                      <strong>O campo conjunto é obrigatório</strong>
                   </span>
               @endif
             </div>
@@ -63,14 +63,14 @@ function myFunction() {
           <div class="form-group">
               <label for="autoclave_id" class="col-md-4 control-label">Autoclave</label>
             <div class="col-md-6">
-              <select class="col-md-4 control-label" id="autoclave_id" name="autoclave_id">
+              <select class="col-md-6 control-label" id="autoclave_id" name="autoclave_id">
                 @foreach ($autoclave->all() as $auto)
-                <option value="{{$auto->autoclave_id}}"> {{$auto->autoclave_id}} </option>
+                <option value="{{$auto->autoclave_id}}"> {{$auto->marca}} </option>
                 @endforeach
               </select>
               @if ($errors->has('autoclave_id'))
                   <span class="help-block">
-                      <strong>{{ $errors->first('autoclave_id') }}</strong>
+                      <strong> O campo autoclave é obrigatório</strong>
                   </span>
               @endif
             </div>

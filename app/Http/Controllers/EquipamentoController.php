@@ -26,7 +26,7 @@ class EquipamentoController extends Controller
     public function update(Request $request, $equipamento_id){
       $equip=$request->all();
       $this->validate($request, [
-        'equipamento_nome' => 'required|string|unique:equipamento'
+        'equipamento_nome' => 'required|string|unique:equipamentoodontologico,equipamento_nome,'.$equipamento_id.',equipamento_id'
    ]);
       try{
           Equipamento::where('equipamento_id',$equipamento_id)->update(['equipamento_nome' => $equip['equipamento_nome']]);

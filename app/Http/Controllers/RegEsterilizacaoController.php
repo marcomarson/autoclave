@@ -26,7 +26,7 @@ class RegEsterilizacaoController extends Controller
      {
 
 
-       $autoclave = \App\Autoclave::all();
+       $autoclave = \App\Autoclave::where('manutencao', 'false')->get();
        $conjunto = \App\Conjunto::all();
        return view('registrar.registrar')
        ->with('autoclave', $autoclave)
@@ -34,6 +34,10 @@ class RegEsterilizacaoController extends Controller
      }
 
      public function store(Request $request){
+       $this->validate($request, [
+         'autoclave_id' => 'required',
+         'conjunto_id' => 'required'
+    ]);
          try{
            $current_time = \Carbon\Carbon::now()->toDateTimeString();
            $dados=$request->all();
@@ -46,7 +50,7 @@ class RegEsterilizacaoController extends Controller
                'admin_id' => Auth::guard('web')->user()->admin_id,
                'rodada'=> 1
               ]);
-              $autoclave = \App\Autoclave::all();
+               $autoclave = \App\Autoclave::where('manutencao', 'false')->get();
               $conjunto = \App\Conjunto::all();
               //$request->session()->flush();
                return view('registrar.registrar')->with('success','Esterilização cadastrada com sucesso')

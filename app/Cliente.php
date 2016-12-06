@@ -37,4 +37,8 @@ class Cliente extends Authenticatable
     {
         return $this->hasMany('App\Pessoa_disciplina');
     }
+    public function esterilizacao()
+    {
+        return $this->hasMany('App\Esterilizacao');
+    }
 }

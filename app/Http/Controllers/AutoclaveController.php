@@ -90,7 +90,7 @@ class AutoclaveController extends Controller
     }
 
     public function destroy($id){
-
+      Autoclave::find($id)->esterilizacao()->delete();
       Autoclave::find($id)->delete();
        return redirect()->route('autoclave.create')
                        ->with('success','Autoclave deletada com sucesso');

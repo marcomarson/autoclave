@@ -14,4 +14,12 @@ class Telefone extends Model
         'telefone_numero'
    ];
    public $timestamps = false;
+   public function cliente()
+   {
+       return $this->hasOne('App\Cliente');
+   }
+   public function admin()
+   {
+       return $this->hasOne('App\Admin');
+   }
 }
