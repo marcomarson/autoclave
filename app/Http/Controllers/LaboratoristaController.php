@@ -184,9 +184,8 @@ class LaboratoristaController extends Controller
 
         Admin::where('admin_id', $id)->first()->esterilizacao()->delete();
 
-        \App\Telefone::where('telefone_id',$clienteupdate['telefone_id'])->delete();
         Admin::where('admin_id', $id)->delete();
-        $tel= \App\Telefone::where('telefone_id',$clienteupdate['telefone_id'])->delete();
+        \App\Telefone::where('telefone_id',$clienteupdate['telefone_id'])->delete();
         return redirect()->route('laboratorista.create')
                         ->with('success','Laboratorista removida com sucesso');
 

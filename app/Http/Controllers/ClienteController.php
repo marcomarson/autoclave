@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Cliente;
+use App\Disciplina;
 
 use App\Http\Requests;
 
@@ -41,7 +42,6 @@ class ClienteController extends Controller
         'ra' => 'numeric|digits_between:8-12|unique:aluno,ra,'.$cliente_id.',cliente_id'
    ]);
         try{
-            Disciplina::where('materia_id',$materia_id)->update(['conjunto_id' => $dados['conjunto_id'], 'ano' => $dados['ano'], 'materia_nome' => $dados['nome'] ]);
             $cidade= \App\Cidade::where('cidade_nome', strtolower ($dados['cidade_nome']))->first();
             if (is_null($cidade)){
               \App\Cidade::create([
@@ -57,7 +57,6 @@ class ClienteController extends Controller
             }else {
 
             }
-            $tel= \App\Telefone::where('telefone_id',$dados['telefone_numero'])->first();
 
               $tel_id= \App\Telefone::where('telefone_numero', $dados['telefone_numero'])->where('telefone_ddd', $dados['telefone_ddd'])->first();
 
@@ -69,7 +68,8 @@ class ClienteController extends Controller
                   'cidade_id' => $cidade['cidade_id'],
                   'telefone_id' => $tel['telefone_id']
                 ]);
-            //return \Redirect::to('cliente');
+                return redirect()->route('cliente.create')
+                                ->with('success','Cliente atualizado com sucesso');
 
         } catch (Exception $ex) {
             return 'erro';
