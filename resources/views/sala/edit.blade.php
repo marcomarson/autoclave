@@ -24,11 +24,11 @@
 
                       <div class="col-md-4">
 
-                          <input id="nome" type="text" class="form-control" name="nome" value="{{ $sala->sala_nome }}">
+                          <input id="sala_nome" type="text" class="form-control" name="sala_nome" value="{{ $sala->sala_nome }}">
 
-                          @if ($errors->has('nome'))
+                          @if ($errors->has('sala_nome'))
                               <span class="help-block">
-                                  <strong>{{ $errors->first('nome') }}</strong>
+                                  <strong>{{ $errors->first('sala_nome') }}</strong>
                               </span>
                           @endif
                       </div>

@@ -38,15 +38,15 @@ function myFunction() {
                 {{ csrf_field() }}
                 <form class="form-horizontal" role="form" method="POST" action="{{ url('/disciplina') }}">
                   <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                  <div class="form-group{{ $errors->has('nome') ? ' has-error' : '' }}">
-                      <label for="nome" class="col-md-4 control-label">Nome da Matéria</label>
+                  <div class="form-group{{ $errors->has('disciplina_nome') ? ' has-error' : '' }}">
+                      <label for="nome" class="col-md-4 control-label">Nome da Disciplina</label>
 
                       <div class="col-md-6">
-                          <input id="nome" type="text" class="form-control" name="nome" value="{{ old('nome') }}">
+                          <input id="disciplina_nome" type="text" class="form-control" name="disciplina_nome" value="{{ old('disciplina_nome') }}">
 
-                          @if ($errors->has('nome'))
+                          @if ($errors->has('disciplina_nome'))
                               <span class="help-block">
-                                  <strong>{{ $errors->first('nome') }}</strong>
+                                  <strong>{{ $errors->first('disciplina_nome') }}</strong>
                               </span>
                           @endif
                       </div>
@@ -73,6 +73,11 @@ function myFunction() {
                             <option value="{{$con->conjunto_id}}"> {{$con->conjuntoequipamentos_nome }} </option>
                             @endforeach
                       </select>
+                      @if ($errors->has('conjunto_id'))
+                          <span class="help-block">
+                              <strong>O campo conjunto de equipamentos é obrigatório</strong>
+                          </span>
+                      @endif
                     </div>
                   </div>
 
@@ -96,13 +101,13 @@ function myFunction() {
 <div class="container">
   <div class="row">
     <div class="col-lg-12">
-      <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Busca pelo nome da matéria" title="Digite um nome">
+      <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Busca pelo nome da disciplina" title="Digite um nome">
       <table id="myTable" class="table table-responsive table-striped table-hover">
         <thead>
           <tr>
             <th class="col-md-1">Disciplina ID</th>
             <th class='col-md-1'>Conjunto ID</th>
-            <th class="col-md-1">Nome da Matéria</th>
+            <th class="col-md-1">Nome da Disciplina</th>
             <th class="col-md-1">Ano</th>
             <th class="col-md-1">Ações</th>
           </tr>

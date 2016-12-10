@@ -16,26 +16,26 @@ class DisciplinaController extends Controller
   }
     public function index(){
         $conjunto = Conjunto::all();
-        $disciplina = Disciplina::orderBy('materia_id', 'desc')->take(10)->get();
+        $disciplina = Disciplina::orderBy('disciplina_id', 'desc')->take(10)->get();
         return view('disciplina.create')->with('conjunto', $conjunto)->with('disciplina', $disciplina);
     }
 
     public function create(){
          $conjunto = Conjunto::all();
-         $disciplina = Disciplina::orderBy('materia_id', 'desc')->take(10)->get();
+         $disciplina = Disciplina::orderBy('disciplina_id', 'desc')->take(10)->get();
         return view('disciplina.create')->with('conjunto', $conjunto)->with('disciplina', $disciplina);
     }
 
-    public function update(Request $request, $materia_id){
+    public function update(Request $request, $disciplina_id){
       $this->validate($request, [
         'conjunto_id' => 'required',
         'ano' => 'required|numeric',
-        'nome' => 'required|string'
+        'disciplina_nome' => 'required|string'
 
    ]);
         try{
             $dados=$request->all();
-              Disciplina::where('materia_id',$materia_id)->update(['conjunto_id' => $dados['conjunto_id'], 'ano' => $dados['ano'], 'materia_nome' => $dados['nome'] ]);
+              Disciplina::where('disciplina_id',$disciplina_id)->update(['conjunto_id' => $dados['conjunto_id'], 'ano' => $dados['ano'], 'disciplina_nome' => $dados['disciplina_nome'] ]);
                 return redirect()->route('disciplina.create')
                                 ->with('success','Disciplina atualizada com sucesso');
 
@@ -45,9 +45,9 @@ class DisciplinaController extends Controller
         }
 
     }
-    public function edit($materia_id){
+    public function edit($disciplina_id){
         $conjunto = Conjunto::all();
-        $disciplina = Disciplina::where('materia_id',$materia_id)->first();
+        $disciplina = Disciplina::where('disciplina_id',$disciplina_id)->first();
         return view('disciplina.edit')->with('disciplina', $disciplina)->with('conjunto', $conjunto);
     }
 
@@ -61,7 +61,7 @@ class DisciplinaController extends Controller
       $this->validate($request, [
         'conjunto_id' => 'required',
         'ano' => 'required|numeric',
-        'nome' => 'required|string'
+        'disciplina_nome' => 'required|string'
 
    ]);
         try{
@@ -70,10 +70,11 @@ class DisciplinaController extends Controller
                  Disciplina::create([
                   'conjunto_id' => $dados['conjunto_id'],
                   'ano' => $dados['ano'],
-                  'materia_nome' => $dados['nome'],
+                  'disciplina_nome' => $dados['disciplina_nome'],
                 ]);
-                return redirect()->route('disciplina.create')
-                                ->with('success','Disciplina cadastrada com sucesso');
+                $conjunto = Conjunto::all();
+                $disciplina = Disciplina::orderBy('disciplina_id', 'desc')->take(10)->get();
+                return view('disciplina.create')->with('conjunto', $conjunto)->with('disciplina', $disciplina)->with('success','Disciplina cadastrada com sucesso');
 
 
         } catch (Exception $ex) {
@@ -82,13 +83,14 @@ class DisciplinaController extends Controller
     }
 
     public function destroy($id){
-      $var=\App\Pessoa_disciplina::where('materia_id', $id)->get();
+      $var=\App\Pessoa_disciplina::where('disciplina_id', $id)->get();
 
       foreach ($var as $value) {
-          \App\Pessoa_disciplina::where('materia_id',$value['materia_id'])->delete();
+          \App\Pessoa_disciplina::where('disciplina_id',$value['disciplina_id'])->delete();
       }
       Disciplina::find($id)->delete();
-       return redirect()->route('disciplina.create')
-                       ->with('success','Disciplina deletada com sucesso');
+      $conjunto = Conjunto::all();
+      $disciplina = Disciplina::orderBy('disciplina_id', 'desc')->take(10)->get();
+      return view('disciplina.create')->with('conjunto', $conjunto)->with('disciplina', $disciplina)->with('success','Disciplina deletada com sucesso');
     }
 }

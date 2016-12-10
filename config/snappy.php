@@ -7,7 +7,7 @@ return array(
         'enabled' => true,
         'binary'  => 'C:\wkhtmltopdf\bin\wkhtmltopdf',
         'timeout' => false,
-        'options' => array(),
+        'options' => array('encoding' => 'utf-8'),
         'env'     => array(),
     ),
     'image' => array(

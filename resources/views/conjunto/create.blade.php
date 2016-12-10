@@ -56,7 +56,16 @@ myDiv2.appendChild(selectList);
 </script>
 
 @section('content')
-
+@if (isset($success))
+  <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+          <div class="panel panel-default">
+              <div class="panel-heading"> {{$success}}
+              </div>
+          </div>
+      </div>
+  </div>
+@endif
 <div class="row">
     <div class="col-md-8 col-md-offset-2">
         <div class="panel panel-default">

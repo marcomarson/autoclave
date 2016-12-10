@@ -1,11 +1,10 @@
 @extends('layouts.telainicial')
 @section('content')
 @if (isset($success))
-{{dd($success)}}
   <div class="row">
       <div class="col-md-8 col-md-offset-2">
           <div class="panel panel-default">
-              <div class="panel-heading"> Entrou{{$success}}
+              <div class="panel-heading"> {{$success}}
               </div>
           </div>
       </div>
@@ -67,7 +66,8 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-12">
-      <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Busca pelo nome da sala" title="Digite um nome">
+        <input type="text" id="myInput" name="sala_nome" class="col-lg-8" onkeyup="myFunction()" placeholder="Busca pelo nome da sala" title="Digite um nome">
+
       <table id="myTable" class="table table-responsive table-striped table-hover">
         <thead>
           <tr>

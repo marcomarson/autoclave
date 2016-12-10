@@ -15,7 +15,7 @@ class Conjunto extends Model
      * @var array
      */
     protected $fillable = [
-        'conjuntoequipamentos_nome', 'sala_id'
+        'conjuntoequipamentos_nome', 'sala_id', 'conjunto_ativo'
     ];
 
     /**

@@ -11,7 +11,8 @@ class Sala extends Model
     //
      public $fillable = [
          'descricao',
-        'sala_nome'
+        'sala_nome',
+        'sala_ativo'
    ];
    public $timestamps = false;
    public function conjunto()

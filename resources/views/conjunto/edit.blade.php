@@ -38,7 +38,16 @@ myDiv2.appendChild(selectList);
 </script>
 
 @section('content')
-
+@if (isset($success))
+  <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+          <div class="panel panel-default">
+              <div class="panel-heading"> {{$success}}
+              </div>
+          </div>
+      </div>
+  </div>
+@endif
 <div class="row">
     <div class="col-md-8 col-md-offset-2">
         <div class="panel panel-default">
@@ -47,15 +56,15 @@ myDiv2.appendChild(selectList);
                 {{ csrf_field() }}
                 {!! Form::model($conjunto, ['method' => 'PATCH','route' => ['conjunto.update', $conjunto->conjunto_id], 'class' => 'form-horizontal']) !!}
                   <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                  <div class="form-group{{ $errors->has('nome') ? ' has-error' : '' }}">
-                      <label for="nome" class="col-md-4 control-label">Nome do Conjunto de Equipamentos</label>
+                  <div class="form-group{{ $errors->has('conjuntoequipamentos_nome') ? ' has-error' : '' }}">
+                      <label for="conjuntoequipamentos_nome" class="col-md-4 control-label">Nome do Conjunto de Equipamentos</label>
 
                       <div class="col-md-6">
-                          <input id="nome" type="text" class="form-control" name="nome" value="{{  $conjunto->conjuntoequipamentos_nome }}">
+                          <input id="conjuntoequipamentos_nome" type="text" class="form-control" name="conjuntoequipamentos_nome" value="{{  $conjunto->conjuntoequipamentos_nome }}">
 
-                          @if ($errors->has('nome'))
+                          @if ($errors->has('conjuntoequipamentos_nome'))
                               <span class="help-block">
-                                  <strong>{{ $errors->first('nome') }}</strong>
+                                  <strong>{{ $errors->first('conjuntoequipamentos_nome') }}</strong>
                               </span>
                           @endif
                       </div>

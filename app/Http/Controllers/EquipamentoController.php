@@ -60,9 +60,10 @@ class EquipamentoController extends Controller
             Equipamento::create([
               'equipamento_nome' => $equip['equipamento_nome']
             ]);
-
-            return redirect()->route('equipamento.create')
-                            ->with('success','Equipamento cadastrado com sucesso');
+            $equip = Equipamento::orderBy('equipamento_id', 'desc')->take(7)->get();
+            return view('equipamento.create')->with('equipamento', $equip)->with('success','Equipamento cadastrado com sucesso');
+            //return redirect()->route('equipamento.create')
+              //              ->with('success','Equipamento cadastrado com sucesso');
 
         } catch (Exception $ex) {
             return 'erro';
@@ -76,7 +77,7 @@ class EquipamentoController extends Controller
           \App\Conjunto::where('conjunto_id',$value['conjunto_id'])->delete();
       }
       Equipamento::find($id)->delete();
-       return redirect()->route('equipamento.create')
-                       ->with('success','Equipamento deletado com sucesso');
+      $equip = Equipamento::orderBy('equipamento_id', 'desc')->take(7)->get();
+      return view('equipamento.create')->with('equipamento', $equip)->with('success','Equipamento deletado com sucesso');
     }
 }

@@ -53,6 +53,8 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/pdfdaily','PDFController@index');
     Route::get('/pdfmonth','PDFController@index2');
     Route::get('/pdfyear','PDFController@index3');
+    Route::get('/daily','PDFController@controlarelatorio');
+
 
     Route::get('login', 'Auth\AuthController@showLoginForm');
     Route::post('login', 'Auth\AuthController@login');

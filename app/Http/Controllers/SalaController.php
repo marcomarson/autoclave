@@ -19,6 +19,7 @@ class SalaController extends Controller
         return view('sala.create')->with('sala', $sala);
     }
 
+
     public function update(Request $request, $sala_id){
       $sala=$request->all();
       $this->validate($request, [
@@ -41,8 +42,9 @@ class SalaController extends Controller
       return view('sala.edit')->with('sala', $sala);
     }
 
-    public function show(){
-
+    public function show($sala_nome){
+        $sala = Sala::where('sala_nome', $sala_nome)->get();
+        return view('sala.create')->with('sala', $sala);
     }
 
 
@@ -59,8 +61,8 @@ class SalaController extends Controller
                   'sala_nome' => $dados['sala_nome'],
                   'descricao' => $dados['descricao'],
                 ]);
-                return redirect()->route('sala.create')
-                              ->with('success','Sala criada com sucesso');
+                $sala = Sala::orderBy('sala_id', 'desc')->take(7)->get();
+                return view('sala.create')->with('sala', $sala)->with('success','Sala criada com sucesso');
 
         } catch (Exception $ex) {
             return 'erro';
@@ -77,7 +79,7 @@ class SalaController extends Controller
           \App\Conjunto::find($value['conjunto_id'])->delete();
       }
        Sala::where('sala_id', $id)->delete();
-       $success = 'Equipamento deletado com sucesso';
-        return redirect()->route('sala.create')->with('success',$success);
+       $sala = Sala::orderBy('sala_id', 'desc')->take(7)->get();
+       return view('sala.create')->with('sala', $sala)->with('success','Sala deletada com sucesso');
     }
 }

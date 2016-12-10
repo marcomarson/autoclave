@@ -8,14 +8,14 @@ class Disciplina extends Model
 {
   public $timestamps = false;
   protected $table = 'disciplina';
-  protected $primaryKey = 'materia_id';
+  protected $primaryKey = 'disciplina_id';
  /**
   * The attributes that are mass assignable.
   *
   * @var array
   */
  protected $fillable = [
-     'conjunto_id', 'materia_nome', 'ano'
+     'conjunto_id', 'disciplina_nome', 'ano', 'disciplin_ativo'
  ];
 
  /**

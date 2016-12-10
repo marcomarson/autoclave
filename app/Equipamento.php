@@ -10,7 +10,7 @@ class Equipamento extends Model
   protected $primaryKey = 'equipamento_id';
     //
      public $fillable = [
-        'equipamento_nome'
+        'equipamento_nome', 'equipamento_ativo'
    ];
    public $timestamps = false;
    public function conjunto_equipamento()

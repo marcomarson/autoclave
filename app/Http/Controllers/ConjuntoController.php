@@ -44,7 +44,7 @@ class ConjuntoController extends Controller
             }else {
               Conjunto::where('conjunto_id',$conjunto_id)->update(['conjuntoequipamentos_nome' => $dados['nome'], 'sala_id' => $dados['sala_id']]);
             }
-            $conjunto= \App\Conjunto::where('conjuntoequipamentos_nome', $dados['nome'])->first();
+            $conjunto= \App\Conjunto::where('conjuntoequipamentos_nome', $dados['conjuntoequipamentos_nome'])->first();
 
 
             Conjunto_Equipamento::where('conjunto_id',$conjunto_id)->where('equipamento_id',$conjunto['equipamento'])->update(['conjunto_id' => $conjunto['conjunto_id'],'equipamento_id'=> $dados['equipamento']]);
@@ -82,8 +82,10 @@ class ConjuntoController extends Controller
             }
 
 
-            return redirect()->route('conjunto.create')
-                          ->with('success','Conjunto atualizado com sucesso');
+            $conjunto = Conjunto::all();
+            $sala = Sala::all();
+            $equipamento = Equipamento::all();
+            return view('conjunto.create')->with('conjunto', $conjunto)->with('sala', $sala)->with('equipamento', $equipamento)->with('success','Conjunto atualizado com sucesso');
         } catch (Exception $ex) {
             return 'erro';
         }
@@ -93,7 +95,7 @@ class ConjuntoController extends Controller
         $sala = Sala::all();
         $equipamento = Equipamento::all();
         $conjunto = Conjunto::where('conjunto_id',$conjunto_id)->first();
-        return view('conjunto.edit')->with('conjunto', $conjunto)->with('equipamento', $equipamento)->with('sala', $sala);
+        return view('conjunto.edit')->with('conjunto', $conjunto)->with('equipamento', $equipamento)->with('sala', $sala)->with('success','Conjunto atualizado com sucesso');;
     }
 
     public function show(){
@@ -188,8 +190,10 @@ class ConjuntoController extends Controller
             }
 
 
-            return redirect()->route('conjunto.create')
-                          ->with('success','Conjunto criado com sucesso');
+            $conjunto = Conjunto::all();
+            $sala = Sala::all();
+            $equipamento = Equipamento::all();
+            return view('conjunto.create')->with('conjunto', $conjunto)->with('sala', $sala)->with('equipamento', $equipamento)->with('success','Conjunto criado com sucesso');
         } catch (Exception $ex) {
             return 'erro';
         }
@@ -207,7 +211,9 @@ class ConjuntoController extends Controller
       }
         Conjunto::find($id)->disciplina()->delete();
         Conjunto::find($id)->delete();
-       return redirect()->route('conjunto.create')
-                       ->with('success','Conjunto deletado com sucesso');
+        $conjunto = Conjunto::all();
+        $sala = Sala::all();
+        $equipamento = Equipamento::all();
+        return view('conjunto.create')->with('conjunto', $conjunto)->with('sala', $sala)->with('equipamento', $equipamento)->with('success','Conjunto deletado com sucesso');
     }
 }

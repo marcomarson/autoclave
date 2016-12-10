@@ -15,7 +15,7 @@ class Pessoa_disciplina extends Model
   * @var array
   */
   protected $fillable = [
-      'ministra', 'materia_id', 'cliente_id'
+      'ministra', 'disciplina_id', 'cliente_id'
   ];
 
  /**
@@ -27,6 +27,6 @@ class Pessoa_disciplina extends Model
      return $this->belongsTo('\App\Cliente', 'cliente_id', 'cliente_id');
  }
  public function disciplina() {
-     return $this->belongsTo('\App\Disciplina', 'materia_id', 'materia_id');
+     return $this->belongsTo('\App\Disciplina', 'disciplina_id', 'disciplina_id');
  }
 }

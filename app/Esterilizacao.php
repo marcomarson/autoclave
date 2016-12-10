@@ -41,4 +41,12 @@ class Esterilizacao extends Model {
         return $this->belongsTo('\App\Admin', 'admin_id', 'admin_id');
     }
 
+    public function parent() {
+    return $this->belongsToOne(static::class, 'parent_esterilizacao_id');
+  }
+
+  public function children() {
+    return $this->hasMany(static::class, 'parent_esterilizacao_id');
+  }
+
 }

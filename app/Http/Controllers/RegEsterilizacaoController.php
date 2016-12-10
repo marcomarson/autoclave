@@ -50,12 +50,11 @@ class RegEsterilizacaoController extends Controller
                'admin_id' => Auth::guard('web')->user()->admin_id,
                'rodada'=> 1
               ]);
-               $autoclave = \App\Autoclave::where('manutencao', 'false')->get();
+              $autoclave = \App\Autoclave::where('manutencao', 'false')->get();
               $conjunto = \App\Conjunto::all();
-              //$request->session()->flush();
-               return view('registrar.registrar')->with('success','Esterilização cadastrada com sucesso')
-                              ->with('autoclave', $autoclave)
-                              ->with('conjunto', $conjunto);
+              return view('registrar.registrar')
+              ->with('autoclave', $autoclave)
+              ->with('conjunto', $conjunto)->with('success', 'Esterilização registrada com sucesso');
 
 
          } catch (Exception $ex) {
